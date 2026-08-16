@@ -17,6 +17,9 @@ test-results/
 .env.*
 !.env.example
 
+# Local agent execution evidence — useful while running /ship, not public portfolio content
+.opencode/reports/
+
 # Private sales operations material — never commit to the public repo.
 # These live in the sibling `freelance-sales-ops/` directory.
 data/
