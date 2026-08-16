@@ -14,7 +14,8 @@ The site must make this positioning obvious within the first viewport:
 2. `docs/CONTENT.md`
 3. `docs/CASE_STUDIES.md`
 4. `docs/VALIDATION.md`
-5. Existing source code
+5. `docs/CLOUDFLARE_DEPLOY.md`
+6. Existing source code
 
 If two sources disagree, the higher item wins. Do not silently invent a compromise.
 
@@ -33,6 +34,17 @@ If two sources disagree, the higher item wins. Do not silently invent a compromi
 - Do not delete failing tests as a repair strategy.
 - Keep dependencies small.
 
+## Deployment contract
+
+The production target is **Cloudflare Pages** using a fully static Next.js export.
+
+- Preserve `output: "export"` in `next.config.ts`.
+- `npm run build` must emit a deployable `out/` directory and `out/index.html`.
+- Prefer static/client-side behavior that remains compatible with Pages.
+- Do not add Server Actions, API routes, runtime secrets, middleware, auth or other server-only behavior without first changing the product requirements and deployment strategy explicitly.
+- `NEXT_PUBLIC_*` values are build-time public configuration, not secrets.
+- Cloudflare-specific static response policy may live under `public/` (for example `_headers`).
+
 ## Repository hygiene (public/private split)
 
 This repository is public-facing. All commercial intelligence lives in the sibling
@@ -43,6 +55,7 @@ outreach templates, sales playbook, revenue targets).
 - The WhatsApp CTA must be env-driven (`NEXT_PUBLIC_WHATSAPP_NUMBER`); when unset it must
   hide instead of linking to a fake number.
 - `.gitignore` and `scripts/verify-structure.mjs` enforce the split. Do not weaken them.
+- Agent execution evidence belongs in `.opencode/reports/`, which is gitignored. Do not recreate bootstrap/status reports in the public repository root.
 
 ## Agent workflow
 
@@ -63,6 +76,7 @@ All of the following are mandatory:
 
 - Homepage has one clear positioning statement, one primary CTA and visible starting prices.
 - Four service cards exist.
+- Truthful professional/technical background is visible without fabricating employers or metrics.
 - At least one real-project case study exists.
 - At least three demonstration projects exist and are labeled truthfully.
 - Proyecto Roxana links to the public GitHub repository.
@@ -73,9 +87,10 @@ All of the following are mandatory:
 - `npm run lint` passes.
 - `npm run typecheck` passes.
 - `npm run test` passes.
-- `npm run build` passes.
+- `npm run build` passes and emits `out/index.html`.
 - `npm run test:e2e -- --project=chromium` passes.
 - `npm run test:e2e -- --project=mobile` passes.
+- `npm audit --audit-level=high` passes.
 - No critical/high finding from `@security-reviewer` remains unresolved.
 - `@final-reviewer` returns `PASS`.
 
@@ -85,17 +100,17 @@ Maximum three repair cycles:
 
 `build -> validate -> review -> repair`
 
-If the same class of failure survives three cycles, stop changing architecture. Write the blocker and the narrowest manual decision needed in `FINAL_REPORT.md`.
+If the same class of failure survives three cycles, stop changing architecture. Write the blocker and the narrowest manual decision needed in `.opencode/reports/FINAL_REPORT.md`.
 
 ## Final report
 
-At the end of `/ship`, create or update `FINAL_REPORT.md` with:
+At the end of `/ship`, create or update `.opencode/reports/FINAL_REPORT.md` with:
 
 - what changed;
 - agents used;
 - commands actually run;
 - PASS/FAIL result for each gate;
 - remaining risks;
-- exact next deployment step.
+- exact next Cloudflare Pages deployment step.
 
-Do not claim a command passed unless it was executed successfully.
+The report is local execution evidence and must remain gitignored. Do not claim a command passed unless it was executed successfully.
