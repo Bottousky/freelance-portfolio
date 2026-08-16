@@ -17,8 +17,10 @@ experiences.
 ## Stack
 
 - [Next.js](https://nextjs.org/) (App Router) + React + TypeScript
+- Static export (`output: "export"`) for low-cost, portable hosting
 - Playwright (browser E2E) + Vitest (unit tests)
 - ESLint and `tsc` for static validation
+- GitHub Actions CI
 - No backend, database, auth or paid API required
 
 ## Install
@@ -57,12 +59,22 @@ launches the development server.
 npm run build
 ```
 
-## Deploy (Vercel)
+The production-ready static site is emitted to `out/`.
 
-1. Push the repository to GitHub.
-2. Import the repository in [Vercel](https://vercel.com) — it detects Next.js automatically.
-3. Set the public environment variables below in the Vercel project.
-4. Deploy. No framework-specific config file is required.
+## Deploy — Cloudflare Pages
+
+This portfolio is intentionally deployed as a static Next.js export. It does not need a
+Node.js server or the Cloudflare OpenNext adapter.
+
+1. In Cloudflare, create a **Pages** project and connect this GitHub repository.
+2. Use `npm run build` as the build command.
+3. Use `out` as the build output directory.
+4. Use Node.js 22 for the build environment.
+5. Add the public environment variables below if desired.
+6. Deploy and verify the generated `*.pages.dev` URL on desktop and mobile.
+
+See [`docs/CLOUDFLARE_DEPLOY.md`](docs/CLOUDFLARE_DEPLOY.md) for the exact setup and
+[`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) for the final release checks.
 
 ## Environment variables
 
@@ -72,14 +84,18 @@ Copy `.env.example` to `.env.local` for local overrides. All variables are publi
 - `NEXT_PUBLIC_WHATSAPP_NUMBER` — WhatsApp number in `54911XXXXXXXX` format (digits only).
   When unset, the WhatsApp CTA is hidden instead of linking to a fake number.
 
+Because this is a static export, `NEXT_PUBLIC_*` values are embedded at build time. Set or
+change them in the Cloudflare Pages build environment and trigger a new deployment.
+
 ## Structure
 
 ```text
 app/            Next.js pages (homepage + demo routes)
 components/     UI and interactive demo components
 lib/            content, demo logic
+public/         static assets and Cloudflare static-host configuration
 tests/          unit and browser E2E tests
-docs/           product brief, content guide, validation contract, publish checklist
+docs/           product, validation and deployment documentation
 scripts/        structure verification gate
 ```
 
