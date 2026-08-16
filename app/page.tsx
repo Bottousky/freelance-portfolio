@@ -40,6 +40,27 @@ export default function Home() {
         <p className="introCopy">I&apos;m Manuel Botto, a software developer from Argentina focused on React/TypeScript products, AI-enabled workflows and browser experiences. I use AI aggressively to accelerate implementation, but I treat tests, review and a working production build as the definition of done.</p>
       </section>
 
+      <section className="section shell" aria-labelledby="background-title">
+        <div className="sectionHead">
+          <div><p className="kicker">PRODUCTION BACKGROUND</p><h2 id="background-title">Freelance speed backed by real engineering experience.</h2></div>
+          <p>The portfolio demos show what I can build quickly. My professional background adds the part a demo cannot: shipping and maintaining software in real team environments.</p>
+        </div>
+        <div className="serviceGrid">
+          <article className="serviceCard">
+            <div className="cardTop"><span>PRODUCTION SOFTWARE</span><strong>4+ years</strong></div>
+            <h3>Professional software engineering</h3>
+            <p>Experience building, debugging and maintaining production software where reliability, collaboration and delivery constraints are real.</p>
+            <small>React/TypeScript product work, APIs, Git workflows, testing, code review and iterative delivery.</small>
+          </article>
+          <article className="serviceCard">
+            <div className="cardTop"><span>TECHNICAL FOUNDATION</span><strong>Electronics</strong></div>
+            <h3>Systems thinking before software</h3>
+            <p>A technical-electronics background that carries into debugging, interactive systems and understanding how software connects to the real world.</p>
+            <small>Useful for technical products, browser experiences, simulation-heavy work and hardware-adjacent problems.</small>
+          </article>
+        </div>
+      </section>
+
       <section id="services" className="section shell">
         <div className="sectionHead">
           <div><p className="kicker">PRODUCTIZED SERVICES</p><h2>Small enough to start. Valuable enough to matter.</h2></div>
