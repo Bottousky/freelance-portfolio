@@ -1,0 +1,39 @@
+# Dependencies / build output
+node_modules/
+.next/
+out/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# OS / editor / logs
+.DS_Store
+*.log
+
+# Environment files — never commit real secrets
+.env
+.env.local
+.env.*
+!.env.example
+
+# Private sales operations material — never commit to the public repo.
+# These live in the sibling `freelance-sales-ops/` directory.
+data/
+profiles/
+templates/
+prospects/
+opportunities/
+outreach/
+pipeline/
+leads/
+proposals/
+sales-ops/
+finance/
+strategy/
+
+# Credentials and key material
+*.pem
+*.key
+*.p12
+*.pfx
