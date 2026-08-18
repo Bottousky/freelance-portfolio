@@ -16,8 +16,11 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm run validate
-      - name: Verify static export
-        run: test -f out/index.html
+      - run: npx opennextjs-cloudflare build
+      - name: Verify OpenNext bundle
+        run: |
+          test -f .open-next/worker.js
+          test -d .open-next/assets
       - run: npm audit --audit-level=high
       - name: Install Playwright browsers
         run: npx playwright install --with-deps chromium webkit

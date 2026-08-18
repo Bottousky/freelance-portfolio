@@ -6,14 +6,16 @@ Convert qualified visitors into paid discovery-free sprints by showing exactly w
 
 ## Primary audience
 
-1. Small international product teams needing React/TypeScript/Node/AI integration help.
-2. Agencies seeking a reliable technical collaborator for client delivery.
-3. Argentine high-ticket businesses with weak or under-automated lead funnels, especially construction, modular housing and real estate adjacent businesses.
+1. Product teams and companies needing production backend engineering: Go services, APIs, microservices, event-driven systems.
+2. Small international product teams needing React/TypeScript/Node/AI integration help.
+3. Agencies seeking a reliable technical collaborator for client delivery.
 4. Founders who need a small MVP or a rescue sprint on an existing SaaS.
 
 ## Positioning
 
-**Full-Stack + AI Automation. Focused software sprints that ship.**
+**Backend Software Engineer building reliable distributed systems in Go — and shipping the product surfaces around them.**
+
+Backend credibility leads. React/TypeScript product work, AI-enabled workflows and interactive web are presented as supporting capabilities, not the headline.
 
 Avoid positioning as:
 
@@ -21,24 +23,24 @@ Avoid positioning as:
 - prompt engineer;
 - no-code-only automation specialist;
 - AI researcher;
-- 3D-only creative developer.
+- 3D-only creative developer;
+- frontend-only developer.
 
 Those are capabilities, not the core commercial identity.
 
 ## Productized offers
 
-### 1. Conversion Web Sprint — from USD 650
+### 1. Backend & API Sprint — from USD 1,500
 
-Best for: service businesses and high-ticket lead generation.
+Best for: teams that need a production-minded backend slice designed and shipped.
 
 Baseline deliverable:
 
-- one high-quality responsive landing page;
-- clear conversion journey;
-- contact/qualification form or WhatsApp/email path;
-- technical SEO basics;
-- analytics-ready events;
-- production deployment handoff.
+- one scoped backend service or API surface (Go or Node/TypeScript);
+- REST design and SQL/NoSQL data modeling;
+- automated tests and structured logging/metrics basics;
+- retry/error handling where the workflow requires it;
+- deployment-ready build with documented architecture.
 
 ### 2. AI Automation Sprint — from USD 1,200
 
@@ -66,16 +68,18 @@ Baseline deliverable:
 - production-minded error/loading/empty states;
 - deployment-ready build.
 
-### 4. Interactive Web Experience — from USD 1,500
+### 4. Conversion Web Sprint — from USD 650
 
-Best for: differentiated product presentation, education or interactive storytelling.
+Best for: service businesses and high-ticket lead generation.
 
 Baseline deliverable:
 
-- focused interactive surface;
-- desktop/mobile strategy;
-- Three.js or equivalent only if it materially improves the experience;
-- performance budget and browser QA.
+- one high-quality responsive landing page;
+- clear conversion journey;
+- contact/qualification form or WhatsApp/email path;
+- technical SEO basics;
+- analytics-ready events;
+- production deployment handoff.
 
 ## CTA
 
@@ -93,9 +97,11 @@ The visitor should be encouraged to send:
 
 The portfolio must earn trust through:
 
+- verifiable professional experience (current Mercado Libre backend role, no internal details disclosed);
 - clear scope;
 - visible test/validation philosophy;
 - open-source real project link;
+- a public, self-contained Go demonstration system standing in for employer code that cannot be shared;
 - honest demo labeling;
 - concrete technologies;
 - no fake social proof.

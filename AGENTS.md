@@ -6,7 +6,7 @@ Turn this repository into a polished, credible freelance portfolio that helps Ma
 
 The site must make this positioning obvious within the first viewport:
 
-> **Full-Stack + AI Automation — focused software sprints that ship.**
+> **Backend Software Engineer building reliable distributed systems in Go — focused software sprints that ship.**
 
 ## Sources of truth, in order
 
@@ -33,17 +33,21 @@ If two sources disagree, the higher item wins. Do not silently invent a compromi
 - Do not disable lint/type/test rules to make validation pass.
 - Do not delete failing tests as a repair strategy.
 - Keep dependencies small.
+- Do not claim an architecture is "running" or "shipped" when only a static description or a public reference repository is on display. Distinguish design/explanation from executable evidence.
 
 ## Deployment contract
 
-The production target is **Cloudflare Pages** using a fully static Next.js export.
+The production target is **Cloudflare Workers** via the `@opennextjs/cloudflare` adapter.
 
-- Preserve `output: "export"` in `next.config.ts`.
-- `npm run build` must emit a deployable `out/` directory and `out/index.html`.
-- Prefer static/client-side behavior that remains compatible with Pages.
-- Do not add Server Actions, API routes, runtime secrets, middleware, auth or other server-only behavior without first changing the product requirements and deployment strategy explicitly.
+- `next.config.ts` must remain a regular Next.js build (no `output: "export"`).
+- `wrangler.jsonc` declares the Worker entrypoint (`.open-next/worker.js`) and the static asset binding.
+- `open-next.config.ts` configures the OpenNext adapter (default config is acceptable for this portfolio).
+- `npm run build` followed by `opennextjs-cloudflare build` must produce `.open-next/worker.js`.
+- `npm run preview` boots a local Wrangler dev server against that bundle.
+- `npm run deploy` publishes the Worker to Cloudflare using Wrangler.
+- Cloudflare static response policy may still live under `public/` (for example `_headers`).
+- Do not add Server Actions, runtime secrets, auth or other server-only behavior without first changing the product requirements and deployment strategy explicitly.
 - `NEXT_PUBLIC_*` values are build-time public configuration, not secrets.
-- Cloudflare-specific static response policy may live under `public/` (for example `_headers`).
 
 ## Repository hygiene (public/private split)
 
@@ -55,7 +59,10 @@ outreach templates, sales playbook, revenue targets).
 - The WhatsApp CTA must be env-driven (`NEXT_PUBLIC_WHATSAPP_NUMBER`); when unset it must
   hide instead of linking to a fake number.
 - `.gitignore` and `scripts/verify-structure.mjs` enforce the split. Do not weaken them.
-- Agent execution evidence belongs in `.opencode/reports/`, which is gitignored. Do not recreate bootstrap/status reports in the public repository root.
+- The OpenNext/Workers build emits `.open-next/` and Wrangler emits `.wrangler/`. Both must
+  stay gitignored; never commit generated bundle artifacts.
+- `FINAL_REPORT.md` lives at the repository root and is committed as part of the release
+  record. It is not "agent execution evidence" — it is a release/audit artifact.
 
 ## Agent workflow
 
@@ -76,9 +83,10 @@ All of the following are mandatory:
 
 - Homepage has one clear positioning statement, one primary CTA and visible starting prices.
 - Four service cards exist.
-- Truthful professional/technical background is visible without fabricating employers or metrics.
+- An "Experience" section surfaces the truthful professional background (current employer approved, prior roles, no internal details).
 - At least one real-project case study exists.
 - At least three demonstration projects exist and are labeled truthfully.
+- A flagship backend demo (EventFlow) exists and is labeled `DEMONSTRATION PROJECT`; the page distinguishes architecture description from executable evidence (the actual code lives in a separate public repository).
 - Proyecto Roxana links to the public GitHub repository.
 - Mobile viewport does not overflow horizontally.
 - Keyboard focus remains visible.
@@ -87,10 +95,10 @@ All of the following are mandatory:
 - `npm run lint` passes.
 - `npm run typecheck` passes.
 - `npm run test` passes.
-- `npm run build` passes and emits `out/index.html`.
+- `npm run build` passes.
+- `opennextjs-cloudflare build` produces `.open-next/worker.js`.
 - `npm run test:e2e -- --project=chromium` passes.
 - `npm run test:e2e -- --project=mobile` passes.
-- `npm audit --audit-level=high` passes.
 - No critical/high finding from `@security-reviewer` remains unresolved.
 - `@final-reviewer` returns `PASS`.
 
@@ -100,17 +108,17 @@ Maximum three repair cycles:
 
 `build -> validate -> review -> repair`
 
-If the same class of failure survives three cycles, stop changing architecture. Write the blocker and the narrowest manual decision needed in `.opencode/reports/FINAL_REPORT.md`.
+If the same class of failure survives three cycles, stop changing architecture. Write the blocker and the narrowest manual decision needed in `FINAL_REPORT.md`.
 
 ## Final report
 
-At the end of `/ship`, create or update `.opencode/reports/FINAL_REPORT.md` with:
+At the end of `/ship`, create or update `FINAL_REPORT.md` (repository root, committed) with:
 
 - what changed;
 - agents used;
 - commands actually run;
 - PASS/FAIL result for each gate;
 - remaining risks;
-- exact next Cloudflare Pages deployment step.
+- exact next Cloudflare Workers deployment step.
 
-The report is local execution evidence and must remain gitignored. Do not claim a command passed unless it was executed successfully.
+Do not claim a command passed unless it was executed successfully.

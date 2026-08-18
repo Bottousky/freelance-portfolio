@@ -7,6 +7,10 @@ playwright-report/
 test-results/
 *.tsbuildinfo
 
+# Cloudflare OpenNext / Wrangler local build artifacts (do not commit)
+.open-next/
+.wrangler/
+
 # OS / editor / logs
 .DS_Store
 *.log

@@ -1,4 +1,3 @@
----
 description: Complete the freelance portfolio in one orchestrated build/review/repair run.
 agent: build
 ---
@@ -12,17 +11,13 @@ Read these files first, in order:
 3. `docs/CONTENT.md`
 4. `docs/CASE_STUDIES.md`
 5. `docs/VALIDATION.md`
-6. `docs/PUBLISH_CHECKLIST.md`
-7. `docs/CLOUDFLARE_DEPLOY.md`
+6. `docs/CLOUDFLARE_DEPLOY.md`
+7. `docs/PUBLISH_CHECKLIST.md`
 8. current source/tests
 
 Private commercial material (prospects, marketplace profiles, outreach templates,
 sales playbook, revenue targets) lives in the sibling `../freelance-sales-ops/`
 directory. It is never read by the app and must never be committed to this repo.
-
-The deployment target is Cloudflare Pages using a fully static Next.js export. Preserve
-`output: "export"`; do not introduce server actions, API routes, runtime secrets, auth or other
-server-only behavior unless the product requirements are deliberately changed first.
 
 Then execute this workflow:
 
@@ -35,16 +30,19 @@ Delegate copy improvement to `@copywriter` after reading the product audit.
 
 Delegate the visual/product implementation to `@frontend-builder` with the approved findings. Require:
 
-- polished homepage;
+- polished homepage with the backend-first positioning;
 - clear productized services and starting prices;
-- truthful production-background proof;
+- an Experience section (current role + previous roles) without inventing employer detail;
+- a flagship backend demo at `/demos/eventflow` labeled `DEMONSTRATION PROJECT`,
+  distinguishing architecture description from executable evidence;
 - Proyecto Roxana real case;
-- three interactive deterministic demo cases: lead qualification, AI operations, SaaS validation;
+- three interactive deterministic product demos: lead qualification, AI operations, SaaS validation;
 - responsive/mobile behavior;
 - useful focus/accessibility states;
 - no fake proof;
 - no paid API requirement;
-- successful static export to `out/`.
+- no claim that the EventFlow architecture is "running" here — the live code lives in
+  the linked public repository.
 
 You remain responsible for integrating/fixing any conflicts between agent outputs.
 
@@ -59,10 +57,9 @@ The required commands are:
 - `npm run typecheck`
 - `npm run test`
 - `npm run build`
-- verify `out/index.html` exists
+- `npx opennextjs-cloudflare build`
 - `npm run test:e2e -- --project=chromium`
 - `npm run test:e2e -- --project=mobile`
-- `npm audit --audit-level=high`
 
 Do not call the work done while any command fails.
 
@@ -71,21 +68,19 @@ Do not call the work done while any command fails.
 Delegate a read-only review to `@security-reviewer`.
 Repair every CRITICAL/HIGH finding, then rerun the directly affected gates.
 
-Create `.opencode/reports/FINAL_REPORT.md` containing:
+Create or update `FINAL_REPORT.md` containing:
 
 - files/features changed;
 - subagents used;
 - exact validation commands and their outcomes;
 - security findings/status;
 - remaining risks;
-- next Cloudflare Pages deployment step.
-
-This report is local execution evidence and is intentionally gitignored; do not add it to the public repository.
+- next Cloudflare Workers deployment step.
 
 Delegate final acceptance to `@final-reviewer`.
 
 ### Repair loop
 
-If final reviewer returns REPAIR, implement only the stated blockers, rerun affected validation, update `.opencode/reports/FINAL_REPORT.md` and request one more final review. Maximum three total repair cycles.
+If final reviewer returns REPAIR, implement only the stated blockers, rerun affected validation, update `FINAL_REPORT.md` and request one more final review. Maximum three total repair cycles.
 
-Do not push to GitHub. Do not fabricate results. Finish with the repository in a locally deployable state and the local final report reflecting the actual evidence.
+Do not push to GitHub. Do not fabricate results. Finish with the repository in a locally deployable state and `FINAL_REPORT.md` reflecting the actual evidence.

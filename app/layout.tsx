@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
 
-const title = "Manuel Botto — Full-Stack + AI Automation";
+const title = "Manuel Botto — Backend Software Engineer (Go, Distributed Systems)";
 const description =
-  "Full-Stack + AI Automation — focused software sprints that ship. Freelance React/TypeScript development, AI integrations and automation from USD 650, scoped, tested and deployed.";
+  "Backend Software Engineer building reliable distributed systems in Go — APIs, microservices, event-driven workflows — plus React/TypeScript product engineering. Focused software sprints from USD 650, scoped, tested and deployed.";
 
 export const metadata: Metadata = {
   title,
@@ -12,15 +12,19 @@ export const metadata: Metadata = {
   authors: [{ name: "Manuel Botto" }],
   creator: "Manuel Botto",
   keywords: [
-    "Full-Stack Developer",
+    "Backend Software Engineer",
+    "Go",
+    "Distributed Systems",
+    "Microservices",
+    "Event-Driven Architecture",
+    "REST API",
     "React",
     "TypeScript",
     "Next.js",
-    "AI Automation",
-    "LLM Integration",
-    "SaaS MVP",
     "Three.js",
     "Playwright",
+    "Cloudflare Workers",
+    "OpenNext",
     "Freelance Developer",
   ],
   openGraph: {

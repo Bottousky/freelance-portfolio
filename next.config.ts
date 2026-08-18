@@ -2,11 +2,10 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  // This portfolio is intentionally static: no server actions, auth, API routes or SSR.
-  // `next build` emits the deployable site to `out/`, which Cloudflare Pages can serve directly.
-  output: "export",
-  // Directory-style routes are the most portable option across static hosts.
-  trailingSlash: true,
+  // The portfolio is deployed to Cloudflare Workers via @opennextjs/cloudflare.
+  // The OpenNext build emits `.open-next/worker.js` (consumed by wrangler).
+  // Keep this as a regular Next.js build — server actions and runtime secrets
+  // would break the OpenNext adapter.
 };
 
 export default nextConfig;
