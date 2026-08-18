@@ -3,7 +3,7 @@ import "./globals.css";
 
 const title = "Manuel Botto — Backend Software Engineer (Go, Distributed Systems)";
 const description =
-  "Backend Software Engineer building reliable distributed systems in Go — APIs, microservices, event-driven workflows — plus React/TypeScript product engineering. Focused software sprints from USD 650, scoped, tested and deployed.";
+  "Backend Software Engineer building reliable distributed systems in Go — APIs, microservices, event-driven workflows — plus React/TypeScript product engineering. Available for focused backend engagements, hourly or fixed scope.";
 
 export const metadata: Metadata = {
   title,

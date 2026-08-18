@@ -23,13 +23,24 @@ test("homepage surfaces the experience section with the current employer", async
   await expect(experience.locator(".xpBadge").first()).toHaveText("CURRENT");
 });
 
-test("work section groups case studies by production / experimental / product", async ({ page }) => {
+test("work section groups case studies by reference / experimental / product", async ({ page }) => {
   await page.goto("/");
   const work = page.locator("#work");
   await expect(work).toBeVisible();
-  await expect(work.getByText("PRODUCTION BACKEND")).toBeVisible();
+  await expect(work.getByText("BACKEND REFERENCE IMPLEMENTATION")).toBeVisible();
   await expect(work.getByText("EXPERIMENTAL / AI ENGINEERING")).toBeVisible();
   await expect(work.getByText("PRODUCT ENGINEERING DEMOS")).toBeVisible();
   await expect(work.getByRole("link", { name: /EventFlow/i })).toBeVisible();
   await expect(work.getByRole("link", { name: /Proyecto Roxana/i })).toBeVisible();
+});
+
+test("homepage does not anchor the backend offer at USD 650", async ({ page }) => {
+  await page.goto("/");
+  // The hero must communicate scope / engagement model, not a hard price floor.
+  // The check is scoped to the hero section so that explicit per-service prices
+  // (e.g. the Conversion Web Sprint in the services grid) keep working.
+  const hero = page.locator("section.hero");
+  await expect(hero.getByText(/Available for focused backend engagements/i)).toBeVisible();
+  await expect(hero).not.toContainText("Sprints from");
+  await expect(hero).not.toContainText("USD 650");
 });

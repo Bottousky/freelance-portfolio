@@ -77,7 +77,7 @@ const homeMarkers = [
   "PRODUCTIZED SERVICES",
   "PROOF, NOT CLAIMS",
   "EXPERIENCE",
-  "PRODUCTION BACKEND",
+  "BACKEND REFERENCE IMPLEMENTATION",
   "PRODUCT ENGINEERING DEMOS",
 ];
 for (const marker of homeMarkers) {

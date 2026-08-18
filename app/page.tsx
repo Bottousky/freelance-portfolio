@@ -28,7 +28,7 @@ export default function Home() {
         <p className="heroCopy">
           I design, build and operate production backend services — APIs, microservices, event-driven workflows — and ship the React/TypeScript product surfaces around them when the job needs it.
         </p>
-        <p className="heroPrice">Sprints from <strong>USD 650</strong> — scoped, tested, deployed.</p>
+        <p className="heroPrice">Available for focused backend engagements — hourly or fixed scope.</p>
         <div className="heroActions">
           <a className="button primary" href={inquiryHref}>Tell me what you need</a>
           {contact.whatsappUrl ? (
@@ -110,7 +110,7 @@ export default function Home() {
 
         {flagship ? (
           <>
-            <p className="workSubhead">PRODUCTION BACKEND</p>
+            <p className="workSubhead">BACKEND REFERENCE IMPLEMENTATION</p>
             <a className="caseCard flagshipCard" href={flagship.href}>
               <span className="label">{flagship.label}</span>
               <h3>{flagship.title}</h3>
@@ -189,7 +189,7 @@ export default function Home() {
       <section className="finalCta shell">
         <p className="kicker">NEED TO SHIP SOMETHING?</p>
         <h2>Send the problem, current stack and desired outcome.</h2>
-        <p>I can start with a small paid sprint and expand only if the first delivery creates value.</p>
+        <p>Available for focused hourly engagements and fixed-scope backend projects. Tell me where you are, what you need shipped, and I will reply with a scoped proposal.</p>
         <div className="finalCtaActions">
           <a className="button primary" href={inquiryHref}>{contact.email}</a>
           {contact.whatsappUrl ? (
