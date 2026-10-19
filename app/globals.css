@@ -214,6 +214,13 @@ textarea.demoInput { min-height: 120px; resize: vertical; line-height: 1.5; }
 .caseGrid.three .caseCard { min-height: 380px; }
 .caseGrid.three .caseCard h3 { font-size: 24px; }
 
+/* ---------- Projects & videos ---------- */
+.projectCard { min-height: 0; }
+.projectCard .trustRow { margin: 8px 0 24px; }
+.projectDetail { margin-top: auto; }
+.videoPanel { display: grid; grid-template-columns: 1.6fr 1fr; gap: 60px; align-items: end; }
+.videoPanel > div:last-child p { color: var(--muted); line-height: 1.7; margin: 0 0 22px; }
+
 /* ---------- EventFlow case page ---------- */
 .demoQuote { border-left: 3px solid var(--accent); margin: 0 0 40px; padding: 6px 0 6px 22px; max-width: 760px; font-size: clamp(19px, 2vw, 24px); line-height: 1.55; color: var(--text); }
 .demoEvidenceNote { background: var(--panel2); border: 1px solid var(--line); border-left: 3px solid var(--accent2); border-radius: 12px; padding: 18px 22px; margin: 0 0 28px; font-size: 15px; line-height: 1.6; color: #c4c8d0; }
@@ -231,7 +238,7 @@ textarea.demoInput { min-height: 120px; resize: vertical; line-height: 1.5; }
 @media (max-width: 760px) {
   .nav nav a:not(.navCta) { display: none; }
   .hero { min-height: 650px; }
-  .sectionHead, .processPanel { grid-template-columns: 1fr; gap: 28px; }
+  .sectionHead, .processPanel, .videoPanel { grid-template-columns: 1fr; gap: 28px; }
   .serviceGrid, .caseGrid, .caseGrid.three, .demoGrid, .xpGrid, .capGroups { grid-template-columns: 1fr; }
   .xpBullets { grid-template-columns: 1fr; }
   .heroActions { flex-direction: column; align-items: stretch; }

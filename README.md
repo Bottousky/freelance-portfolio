@@ -14,6 +14,12 @@ event-driven systems and the React/TypeScript product surfaces around them.
   this site is not running the service.
 - **Proyecto Roxana** — a `REAL PROJECT` open-source educational web game ecosystem:
   [github.com/Bottousky/proyecto-roxana](https://github.com/Bottousky/proyecto-roxana).
+- **Projects** — Manuel's own products, each with its own audience and channels:
+  [Juntopia](https://juntopia.com) (a shared deck for game nights: truco, brisca,
+  generala, plus Atlas in “A la distancia”) and Proyecto Roxana (working title of an
+  educational adventure about electricity for ages 12–18; no public link yet).
+- **Videos / devlog** — a section linking to the personal YouTube channel. It only
+  renders when `NEXT_PUBLIC_YOUTUBE_URL` is set.
 - **Three product engineering demonstrations** — lead qualification, AI operations
   desk and a SaaS validation sprint. Every demo is explicitly labeled
   `DEMONSTRATION PROJECT` until it becomes a paid case study. No fake clients,
@@ -83,9 +89,51 @@ as the static asset directory.
 3. `npm run deploy`.
 4. Capture the live `*.workers.dev` URL from the deploy output.
 
-See [`docs/CLOUDFLARE_DEPLOY.md`](docs/CLOUDFLARE_DEPLOY.md) for the full setup and
+See [Custom domain](#custom-domain--manuelbottocom) to serve the Worker from
+`manuelbotto.com`, [`docs/CLOUDFLARE_DEPLOY.md`](docs/CLOUDFLARE_DEPLOY.md) for the full setup and
 [`docs/PUBLISH_CHECKLIST.md`](docs/PUBLISH_CHECKLIST.md) for the final release
 checks.
+
+## Custom domain — manuelbotto.com
+
+The Worker is published today at `*.workers.dev`. These steps move it to
+`manuelbotto.com` and set up `hola@manuelbotto.com`. They are documented here only;
+none of them has been run yet.
+
+1. **Put the domain on Cloudflare.** Dashboard → *Add a domain* → `manuelbotto.com`
+   (Free plan is enough). If the domain was bought outside Cloudflare, change its
+   nameservers at the registrar to the two Cloudflare nameservers shown, then wait
+   until the zone status is **Active**. Remove any existing `A`, `AAAA` or `CNAME`
+   record for `manuelbotto.com` / `www` that points elsewhere, or the next step fails.
+2. **Attach the Worker as a Custom Domain.** Either in the dashboard —
+   *Workers & Pages* → `manuel-freelance-portfolio` → *Settings* → *Domains & Routes*
+   → *Add* → *Custom domain* → `manuelbotto.com` — or in `wrangler.jsonc`, then
+   `npm run deploy`:
+
+   ```jsonc
+   "routes": [
+     { "pattern": "manuelbotto.com", "custom_domain": true }
+   ]
+   ```
+
+   Cloudflare creates the DNS record and the TLS certificate on its own; it can take
+   a few minutes to issue.
+3. **Redirect `www` to the apex.** Add a proxied DNS record for `www`
+   (`AAAA www 100::`, proxy on), then *Rules* → *Redirect Rules* → template
+   *Redirect from WWW to root* (301, keep query string).
+4. **Route `hola@manuelbotto.com`.** *Email* → *Email Routing* → enable it (Cloudflare
+   adds the `MX` and `TXT` records), create the custom address `hola` and forward it
+   to the personal Gmail inbox after verifying that destination. Send a test email
+   before the next step.
+5. **Rebuild with the domain email.** `NEXT_PUBLIC_*` values are embedded at build time,
+   so set `NEXT_PUBLIC_CONTACT_EMAIL=hola@manuelbotto.com` (in `.env.local` or the
+   shell; in CI, as an environment variable of the build step) and run
+   `npm run deploy`. Until then the site keeps the Gmail fallback.
+6. **Verify.** `curl -I https://manuelbotto.com` returns `200`,
+   `curl -I https://www.manuelbotto.com` returns `301` to the apex, and the contact
+   button on the live home opens a mail to `hola@manuelbotto.com`.
+7. **Optional, once the domain works:** set `"workers_dev": false` in `wrangler.jsonc`
+   and redeploy so the old `*.workers.dev` URL stops serving a duplicate copy.
 
 ## Environment variables
 
@@ -94,9 +142,15 @@ public-safe; `NEXT_PUBLIC_*` is bundled at build time and the same value is ship
 to every visitor.
 
 - `NEXT_PUBLIC_CONTACT_EMAIL` — contact email used by the primary `mailto:` CTA.
+  Production value: `hola@manuelbotto.com` once Email Routing is live (see
+  [Custom domain](#custom-domain--manuelbottocom)). When unset, the site falls back
+  to the personal Gmail address.
 - `NEXT_PUBLIC_WHATSAPP_NUMBER` — WhatsApp number in `54911XXXXXXXX` format
   (digits only). When unset, the WhatsApp CTA is hidden instead of linking to a
   fake number.
+- `NEXT_PUBLIC_YOUTUBE_URL` — personal YouTube channel, e.g.
+  `https://www.youtube.com/@handle` (https `youtube.com` or `youtu.be` only). When
+  unset or invalid, the Videos / devlog section and its nav link are hidden.
 
 ## Structure
 

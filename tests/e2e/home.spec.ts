@@ -44,3 +44,18 @@ test("homepage does not anchor the backend offer at USD 650", async ({ page }) =
   await expect(hero).not.toContainText("Sprints from");
   await expect(hero).not.toContainText("USD 650");
 });
+
+test("projects section lists Juntopia and Proyecto Roxana", async ({ page }) => {
+  await page.goto("/");
+  const projects = page.locator("#projects");
+  await expect(projects).toBeVisible();
+  await expect(projects.getByRole("link", { name: /Juntopia/ })).toHaveAttribute("href", "https://juntopia.com");
+  await expect(projects.getByRole("heading", { level: 3, name: "Proyecto Roxana" })).toBeVisible();
+  await expect(projects.getByRole("link", { name: /Proyecto Roxana/ })).toHaveCount(0);
+});
+
+test("videos section stays hidden without a configured channel", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("#videos")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Videos" })).toHaveCount(0);
+});

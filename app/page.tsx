@@ -1,4 +1,4 @@
-import { capabilityGroups, caseStudies, contact, experience, heroTags, services } from "@/lib/content";
+import { capabilityGroups, caseStudies, channels, contact, experience, heroTags, projects, services } from "@/lib/content";
 
 const emailHref = `mailto:${contact.email}?subject=${encodeURIComponent(contact.inquirySubject)}`;
 const inquiryHref = `mailto:${contact.email}?subject=${encodeURIComponent(contact.inquirySubject)}&body=${encodeURIComponent(contact.inquiryBody)}`;
@@ -14,6 +14,8 @@ export default function Home() {
       <header className="nav shell">
         <a className="brand" href="#top" aria-label="Manuel Botto — back to top">MB / build & ship</a>
         <nav aria-label="Primary navigation">
+          <a href="#projects">Projects</a>
+          {channels.youtubeUrl ? <a href="#videos">Videos</a> : null}
           <a href="#experience">Experience</a>
           <a href="#work">Work</a>
           <a href="#services">Services</a>
@@ -45,6 +47,50 @@ export default function Home() {
         <p className="kicker">WHO I AM</p>
         <p className="introCopy">I&apos;m Manuel Botto, a backend software engineer from Argentina. I build and operate production services in Go at Mercado Libre, and I take on focused freelance projects across backend systems, React/TypeScript products and interactive web experiences.</p>
       </section>
+
+      <section id="projects" className="section shell">
+        <div className="sectionHead">
+          <div><p className="kicker">PROJECTS</p><h2>Products I build on my own.</h2></div>
+          <p>Games with their own audiences and channels. This is where they start.</p>
+        </div>
+        <div className="caseGrid">
+          {projects.map((project) => {
+            const body = (
+              <>
+                <span className="label">{project.status}</span>
+                <h3>{project.title}</h3>
+                <strong>{project.subtitle}</strong>
+                <p>{project.description}</p>
+                <div className="trustRow" aria-label={`${project.title} highlights`}>
+                  {project.tags.map((tag) => <span key={tag}>{tag}</span>)}
+                </div>
+                <div className="outcome projectDetail">{project.detail}</div>
+                {project.href ? <span className="caseLink">{project.linkLabel}</span> : null}
+              </>
+            );
+            return project.href ? (
+              <a className="caseCard projectCard" href={project.href} target="_blank" rel="noreferrer" key={project.slug}>{body}</a>
+            ) : (
+              <article className="caseCard projectCard" key={project.slug}>{body}</article>
+            );
+          })}
+        </div>
+      </section>
+
+      {channels.youtubeUrl ? (
+        <section id="videos" className="section shell">
+          <div className="videoPanel">
+            <div>
+              <p className="kicker">VIDEOS / DEVLOG</p>
+              <h2>Building in public.</h2>
+            </div>
+            <div>
+              <p>Devlogs on Juntopia and Proyecto Roxana, backend engineering and the process behind each release.</p>
+              <a className="button ghost" href={channels.youtubeUrl} target="_blank" rel="noreferrer">Watch on YouTube ↗</a>
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <section id="experience" className="section shell">
         <div className="sectionHead">

@@ -6,8 +6,29 @@ export function buildWhatsappUrl(number: string): string | null {
   return `https://wa.me/${normalized}`;
 }
 
+export function buildYoutubeUrl(url: string): string | null {
+  const trimmed = url.trim();
+  if (!trimmed) {
+    return null;
+  }
+  let parsed: URL;
+  try {
+    parsed = new URL(trimmed);
+  } catch {
+    return null;
+  }
+  const host = parsed.hostname.replace(/^(www\.|m\.)/, "");
+  if (parsed.protocol !== "https:" || (host !== "youtube.com" && host !== "youtu.be")) {
+    return null;
+  }
+  return parsed.toString();
+}
+
 export const contact = {
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "manuelgbotto@gmail.com",
+  // Public contact email, set via NEXT_PUBLIC_CONTACT_EMAIL in the host (target: hola@manuelbotto.com).
+  // The fallback stays on a mailbox that already receives mail, so the CTA never points to an
+  // address whose email routing is not live yet.
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "manuelgbotto@gmail.com",
   // WhatsApp number must be set via NEXT_PUBLIC_WHATSAPP_NUMBER in the host.
   // Expected format: "54911XXXXXXXX" (country code + number, digits only, no "+", spaces or dashes).
   // When unset or invalid, whatsappUrl is null and the site hides the WhatsApp CTA instead of
@@ -26,6 +47,42 @@ export const contact = {
     "Thanks!",
   ].join("\n"),
 } as const;
+
+export const channels = {
+  // Personal YouTube channel (videos / devlog), set via NEXT_PUBLIC_YOUTUBE_URL in the host.
+  // Expected format: an https://youtube.com/... or https://youtu.be/... URL.
+  // When unset or invalid, youtubeUrl is null and the site hides the Videos section instead of
+  // linking to a channel that does not exist yet.
+  youtubeUrl: buildYoutubeUrl(process.env.NEXT_PUBLIC_YOUTUBE_URL ?? ""),
+} as const;
+
+export const projects = [
+  {
+    slug: "juntopia",
+    status: "LAUNCHING DEC 2026",
+    title: "Juntopia",
+    subtitle: "One shared deck for game nights",
+    description:
+      "A shared deck for get-togethers: everyone plays from their own phone at the same table — truco, brisca, generala and a free-play deck.",
+    detail:
+      "Coming soon: “A la distancia”, long asynchronous board games for when the group is far apart, starting with Atlas.",
+    tags: ["Truco", "Brisca", "Generala", "Atlas"],
+    href: "https://juntopia.com" as string | null,
+    linkLabel: "juntopia.com ↗",
+  },
+  {
+    slug: "proyecto-roxana",
+    status: "IN DEVELOPMENT",
+    title: "Proyecto Roxana",
+    subtitle: "Educational adventure about electricity",
+    description:
+      "An educational adventure game about electricity for ages 12 to 18.",
+    detail: "Working title — the public name will be announced with its own channels.",
+    tags: ["Ages 12–18", "Electricity", "Education"],
+    href: null as string | null,
+    linkLabel: "",
+  },
+] as const;
 
 export const heroTags = [
   "APIs",

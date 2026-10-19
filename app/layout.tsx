@@ -8,7 +8,7 @@ const description =
 export const metadata: Metadata = {
   title,
   description,
-  applicationName: "Manuel Botto — Freelance Portfolio",
+  applicationName: "Manuel Botto",
   authors: [{ name: "Manuel Botto" }],
   creator: "Manuel Botto",
   keywords: [
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
     title,
     description,
-    siteName: "Manuel Botto — Freelance Portfolio",
+    siteName: "Manuel Botto",
   },
   twitter: {
     card: "summary",

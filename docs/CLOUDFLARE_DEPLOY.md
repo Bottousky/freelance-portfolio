@@ -42,7 +42,8 @@ on the host (typically `~/.config/.wrangler/config/default.toml` for OAuth or
 `CLOUDFLARE_API_TOKEN` + `CLOUDFLARE_ACCOUNT_ID` for CI).
 
 The Worker name comes from `wrangler.jsonc` (`manuel-freelance-portfolio` by
-default). The live URL is shown in the deploy output.
+default). The live URL is shown in the deploy output. To serve it from
+`manuelbotto.com`, follow the *Custom domain* section of the README.
 
 ## Environment variables
 
@@ -50,7 +51,10 @@ default). The live URL is shown in the deploy output.
 opportunity to embed them in the bundle, so set or change them before each
 deployment.
 
-- `NEXT_PUBLIC_CONTACT_EMAIL` — optional; defaults to the public email in the repo.
+- `NEXT_PUBLIC_CONTACT_EMAIL` — `hola@manuelbotto.com` once Email Routing is live;
+  falls back to the personal Gmail address when unset.
+- `NEXT_PUBLIC_YOUTUBE_URL` — optional; personal YouTube channel. When unset, the
+  Videos / devlog section is hidden.
 - `NEXT_PUBLIC_WHATSAPP_NUMBER` — recommended; Argentina mobile format example
   `54911XXXXXXXX`, digits only.
 
