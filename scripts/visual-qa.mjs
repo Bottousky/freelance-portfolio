@@ -1,6 +1,6 @@
-// Visual QA helper. Captures full-page screenshots of the homepage and the
-// /demos/eventflow page at three breakpoints, and verifies the page does
-// not overflow horizontally. Run on demand with:
+// Visual QA helper. Captures full-page screenshots of the homepage at three
+// breakpoints, and verifies the page does not overflow horizontally. Run on
+// demand with:
 //
 //   node scripts/visual-qa.mjs
 //
@@ -16,10 +16,7 @@ const VIEWPORTS = [
   { name: "1440x900", width: 1440, height: 900 },
 ];
 
-const PAGES = [
-  { name: "home", url: "http://127.0.0.1:3000/" },
-  { name: "eventflow", url: "http://127.0.0.1:3000/demos/eventflow" },
-];
+const PAGES = [{ name: "home", url: "http://127.0.0.1:3000/" }];
 
 const OUT_DIR = ".visual-qa";
 mkdirSync(OUT_DIR, { recursive: true });

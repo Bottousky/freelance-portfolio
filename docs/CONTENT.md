@@ -1,91 +1,59 @@
-# Content Guide
+# Content — facts the site may use
 
-## Hero
+This file is the only source of facts for the site. Copy is written in Spanish. The
+rules below are in English. If a fact is not listed here, the site must not publish it.
 
-Headline:
+## Positioning
 
-> Backend Software Engineer building reliable distributed systems in Go.
+> Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
 
-Support:
+## Trabajo (work)
 
-> I design, build and operate production backend services — APIs, microservices, event-driven workflows — and I ship the React/TypeScript product surfaces around them when the job needs it.
+- **Software Engineer, Mercado Libre** — noviembre 2023 – presente.
+  Backend in Go: microservices, APIs, event-driven systems, observability, on-call,
+  code review and mentoring.
+- **Software Developer, Telectrónica Peajes S.A.** — 2022–2023.
+  Desktop software in C++ and C# for toll systems.
+- **Docente, escuela técnica secundaria** — 2020–2023.
+  Taught programming, electronics, mathematics and physics.
 
-Tag row (order matters, backend first):
+## Estudios (studies)
 
-> APIs · Microservices · Event-Driven Systems · SQL/NoSQL · Observability · Cloud
+- **Técnico en Electrónica** (technical secondary degree). Institution and year are not
+  provided. Do not add them.
+- Self-taught, plus courses, for everything else.
 
-React / AI / interactive web appear after the backend message, never before it.
+## Pasiones (passions)
 
-## Tone
+- Hacer videojuegos.
+- Juegos de mesa y juegos de cartas.
+- Enseñar y divulgar (enseñar y divulgar ciencia y tecnología).
 
-- concise;
-- technical but commercial;
-- confident without inflated claims;
-- specific nouns and verbs;
-- no “10x”, “revolutionary”, “world-class”, “guru”, “ninja”, “rockstar” or fake scarcity.
+## Proyectos (projects)
 
-## Proof language
+- **Juntopia** — a shared Spanish-deck card game for get-togethers. Each player uses
+  their own phone. Modes: truco, brisca, generala, free deck. Launches in stores on
+  1 Dec 2026. "A la distancia" with Atlas comes later. Link: `https://juntopia.com`.
+- **Proyecto Roxana** — an educational adventure game about electricity for ages 12–18.
+  In development. Working title. **No public link.** Its public name is not decided.
+- **Juego de Hormigas** — a 3D expedition adventure. An ant is carried far from its
+  colony, and everyday human places become continents. Early design. Public repo:
+  `https://github.com/Bottousky/juego-de-hormigas`.
+- **EventFlow** — an event-driven notification backend in Go. Public reference
+  implementation. Repo: `https://github.com/Bottousky/eventflow`.
 
-Good:
+## Contacto (contact)
 
-- “Demonstrates architecture, browser graphics and deterministic QA.”
-- “Built as a demonstration project for a construction lead funnel.”
-- “Starting at USD 650; final quote depends on scope.”
-- “I can't share my employer's production code, so I built a small public system demonstrating the same engineering concepts I work with professionally.”
+- Email: `hola@manuelbotto.com`, set through `NEXT_PUBLIC_CONTACT_EMAIL`. Until Email
+  Routing is live, the code falls back to the personal Gmail address.
+- GitHub: `https://github.com/Bottousky`.
+- YouTube: set through `NEXT_PUBLIC_YOUTUBE_URL`. Shown only when set.
 
-Bad:
+## Rules for using these facts
 
-- “Trusted by leading companies” without clients.
-- “Boost conversions by 300%” without data.
-- “AI expert” as the only proof.
-
-## Personal introduction
-
-Use a compact introduction, not a biography:
-
-> I’m Manuel Botto, a backend software engineer from Argentina. I build and operate production services in Go at Mercado Libre, and I take on focused freelance projects across backend systems, React/TypeScript products and interactive web experiences.
-
-## Experience
-
-Employer names on this page are published with Manuel's explicit approval: Mercado Libre and Telectrónica Peajes S.A. Do not add internal details, team names, client names, metrics or any non-public information about employers. Everything written must stay at the conceptual level of the approved copy below.
-
-### Software Engineer — Mercado Libre (Nov 2023 — Present)
-
-Approved summary:
-
-> Building and owning production backend services for customer-experience systems, primarily in Go. Working with microservices, APIs, event-driven architectures, SQL/NoSQL storage, distributed queues, observability and high-throughput production environments.
-
-Approved bullets:
-
-- Own backend services handling high-volume event-driven workflows.
-- Design APIs and microservices in Go.
-- Participate in architecture decisions and RFCs.
-- Operate production systems through monitoring and on-call.
-- Maintain high automated test coverage.
-- Review code and mentor engineers transitioning into backend development.
-
-### Software Developer — Telectrónica Peajes S.A. (2022 — 2023)
-
-Concept: C++ / C# desktop software for toll infrastructure. Shows engineering depth predates the current web stack.
-
-### Technical School Teacher (2020 — 2023)
-
-Low prominence. Supports communication and mentoring credibility. One line, no institution name.
-
-## Capabilities
-
-Primary group (always first):
-
-> Go · Microservices · REST APIs · Distributed Systems · Event-Driven Architecture · SQL / NoSQL · Key-Value Stores · Observability · Unit Testing · AWS / GCP · Git · System Design
-
-Secondary group:
-
-> TypeScript · React · Next.js · C/C++ · C# · AI-assisted engineering · Three.js · Phaser
-
-## Work architecture
-
-Three mental columns, in this order:
-
-1. **Production Backend** — EventFlow / Notification Orchestrator (public Go demonstration system) plus the Mercado Libre experience entry.
-2. **Product Engineering** — the three product demos (Lead Qualification Engine, AI Operations Desk, SaaS Validation Sprint).
-3. **Experimental / AI Engineering** — Proyecto Roxana (real project, wildcard: breadth, initiative, ability to build hard things outside work).
+- Use the dates and roles exactly as written above. Do not round, merge or extend them.
+- Do not add employers, titles, degrees, dates, metrics, awards, testimonials or
+  anecdotes that are not listed here.
+- Do not describe any project as running in production or as shipped unless this file
+  says so.
+- Do not mention any name for Proyecto Roxana other than its working title.

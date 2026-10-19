@@ -1,119 +1,74 @@
-# Product Brief — Freelance Portfolio
+# Product Brief — Manuel Botto, personal site
 
-## Product goal
+## Goal
 
-Convert qualified visitors into paid discovery-free sprints by showing exactly what can be delivered, at what starting price, and what engineering evidence supports the claim.
+A personal website for Manuel Botto at `manuelbotto.com`. It presents his projects,
+his career and studies, and his passions. It is not a sales page. The only contact
+path is email.
 
-## Primary audience
+## Positioning line
 
-1. Product teams and companies needing production backend engineering: Go services, APIs, microservices, event-driven systems.
-2. Small international product teams needing React/TypeScript/Node/AI integration help.
-3. Agencies seeking a reliable technical collaborator for client delivery.
-4. Founders who need a small MVP or a rescue sprint on an existing SaaS.
+Use this line verbatim (Spanish), in the first viewport:
 
-## Positioning
+> Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
 
-**Backend Software Engineer building reliable distributed systems in Go — and shipping the product surfaces around them.**
+## Audience
 
-Backend credibility leads. React/TypeScript product work, AI-enabled workflows and interactive web are presented as supporting capabilities, not the headline.
+1. **People who follow his games and his channel** (Spanish-speaking). They want to see
+   what he is making and where to play or follow it.
+2. **Peers and recruiters** curious about his engineering work. They want a plain,
+   factual view of his career and public projects.
+3. **Students** interested in programming and electronics. They want to see how a
+   person moves from electronics and teaching into software and game development.
 
-Avoid positioning as:
+## What the site must do
 
-- generic web designer;
-- prompt engineer;
-- no-code-only automation specialist;
-- AI researcher;
-- 3D-only creative developer;
-- frontend-only developer.
+- In under 30 seconds, a visitor can answer: who Manuel is, what he is building, what
+  he studied and did, and how to reach him.
+- Show each project with its real status (launched, in development, early design).
+  Do not overstate any of them.
+- Show passions as their own section, and career and studies as plain facts from
+  `docs/CONTENT.md`.
+- Offer one contact path: email, through `NEXT_PUBLIC_CONTACT_EMAIL`. Link to GitHub
+  and, when configured, to YouTube.
 
-Those are capabilities, not the core commercial identity.
+## Sections
 
-## Productized offers
+Headings are in Spanish.
 
-### 1. Backend & API Sprint — from USD 1,500
+1. **Inicio** (hero) — name, positioning line, short links to the sections below.
+2. **Proyectos** — Juntopia, Proyecto Roxana, Juego de Hormigas, EventFlow.
+3. **Pasiones** — video games, board and card games, teaching and science/tech outreach.
+4. **Trayectoria** — work (trabajo) and studies (estudios).
+5. **Videos** — rendered only when `NEXT_PUBLIC_YOUTUBE_URL` is set.
+6. **Contacto** — a `mailto:` link, plus GitHub.
 
-Best for: teams that need a production-minded backend slice designed and shipped.
+## Tone
 
-Baseline deliverable:
+- Spanish, direct and plain. Short sentences.
+- Factual. No superlatives, hype or marketing clichés ("soluciones a medida",
+  "apasionado por", "transformo ideas").
+- Do not say a project is running, shipped or in production unless `docs/CONTENT.md`
+  says so.
 
-- one scoped backend service or API surface (Go or Node/TypeScript);
-- REST design and SQL/NoSQL data modeling;
-- automated tests and structured logging/metrics basics;
-- retry/error handling where the workflow requires it;
-- deployment-ready build with documented architecture.
+## Out of scope
 
-### 2. AI Automation Sprint — from USD 1,200
+- Services, prices, hourly rates, sprints or packages.
+- Freelance offers, "contrátame" CTAs, qualification forms.
+- Commercial demos or demo pages of any kind.
+- Testimonials, client logos, production metrics, conversion goals.
+- WhatsApp or any messaging-app CTA.
+- Blog or CMS, auth, database, server-side features.
 
-Best for: repetitive inbound/outbound operations.
+## Content boundaries
 
-Baseline deliverable:
+- Every fact comes from `docs/CONTENT.md`. A fact that is not there is not published.
+- Proyecto Roxana is shown under its working title with no public link.
+- Juntopia links to `https://juntopia.com`.
+- Juego de Hormigas and EventFlow link to their public GitHub repositories.
 
-- one end-to-end workflow;
-- API or data integration;
-- structured AI processing where useful;
-- retries/error states;
-- human review point when risk warrants it;
-- basic logging/acceptance evidence.
+## Success
 
-### 3. AI / SaaS MVP — from USD 2,500
-
-Best for: founder/product validation.
-
-Baseline deliverable:
-
-- one core user journey;
-- React/TypeScript interface;
-- backend/API/data integration as required;
-- auth only if the journey requires it;
-- production-minded error/loading/empty states;
-- deployment-ready build.
-
-### 4. Conversion Web Sprint — from USD 650
-
-Best for: service businesses and high-ticket lead generation.
-
-Baseline deliverable:
-
-- one high-quality responsive landing page;
-- clear conversion journey;
-- contact/qualification form or WhatsApp/email path;
-- technical SEO basics;
-- analytics-ready events;
-- production deployment handoff.
-
-## CTA
-
-Primary: **Tell me what you need**.
-
-The visitor should be encouraged to send:
-
-- current problem;
-- current stack/site;
-- desired result;
-- urgency;
-- approximate budget if known.
-
-## Trust strategy
-
-The portfolio must earn trust through:
-
-- verifiable professional experience (current Mercado Libre backend role, no internal details disclosed);
-- clear scope;
-- visible test/validation philosophy;
-- open-source real project link;
-- a public, self-contained Go demonstration system standing in for employer code that cannot be shared;
-- honest demo labeling;
-- concrete technologies;
-- no fake social proof.
-
-## Success metrics after deployment
-
-Track:
-
-- CTA click rate;
-- qualified inquiries per 100 visitors;
-- reply-to-proposal rate;
-- booked discovery/technical calls;
-- paid sprint conversion rate.
-
-Do not fabricate baseline numbers before real traffic exists.
+- A reader leaves knowing who Manuel is and what he makes.
+- The page reads well on mobile, and in both light and dark color schemes.
+- No numeric targets are set. Do not invent baselines.

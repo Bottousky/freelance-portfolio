@@ -1,29 +1,29 @@
-# Manuel Botto — Backend Software Engineer (Go, Distributed Systems)
+# Manuel Botto — Personal Site
 
-Backend Software Engineer building reliable distributed systems in Go — focused
-software sprints that ship. Public portfolio for Manuel Botto, a backend engineer
-from Argentina working remotely worldwide on Go services, APIs, microservices,
-event-driven systems and the React/TypeScript product surfaces around them.
+Personal website of Manuel Botto, served at `manuelbotto.com`. The copy is in Spanish.
+It shows his projects, his career and studies, his passions and, when configured, his
+videos. The only contact is email.
+
+Manuel is a backend engineer at Mercado Libre, an electronics technician and a former
+teacher. In his free time he makes games and writes about how he builds them.
 
 ## What's here
 
-- **EventFlow — Notification Orchestrator** — a flagship backend `DEMONSTRATION PROJECT`.
-  The portfolio page describes the architecture, components and engineering concepts
-  in detail. The implementation lives in the public repository
-  [github.com/Bottousky/eventflow](https://github.com/Bottousky/eventflow);
-  this site is not running the service.
-- **Proyecto Roxana** — a `REAL PROJECT` open-source educational web game ecosystem:
-  [github.com/Bottousky/proyecto-roxana](https://github.com/Bottousky/proyecto-roxana).
-- **Projects** — Manuel's own products, each with its own audience and channels:
-  [Juntopia](https://juntopia.com) (a shared deck for game nights: truco, brisca,
-  generala, plus Atlas in “A la distancia”) and Proyecto Roxana (working title of an
-  educational adventure about electricity for ages 12–18; no public link yet).
-- **Videos / devlog** — a section linking to the personal YouTube channel. It only
-  renders when `NEXT_PUBLIC_YOUTUBE_URL` is set.
-- **Three product engineering demonstrations** — lead qualification, AI operations
-  desk and a SaaS validation sprint. Every demo is explicitly labeled
-  `DEMONSTRATION PROJECT` until it becomes a paid case study. No fake clients,
-  testimonials or metrics.
+- **Proyectos** — Manuel's own projects, each with its own audience and channels:
+  - [Juntopia](https://juntopia.com) — a shared Spanish-deck card game for get-togethers,
+    with truco, brisca, generala and a free deck. Launches in stores on 1 Dec 2026.
+  - Proyecto Roxana — working title of an educational adventure about electricity for
+    ages 12–18. In development. No public link yet.
+  - Juego de Hormigas — a 3D expedition adventure in early design:
+    [github.com/Bottousky/juego-de-hormigas](https://github.com/Bottousky/juego-de-hormigas).
+  - EventFlow — an event-driven notification backend in Go, published as a public
+    reference implementation:
+    [github.com/Bottousky/eventflow](https://github.com/Bottousky/eventflow).
+- **Pasiones** — video games, board and card games, and teaching and science/tech outreach.
+- **Trayectoria** — work and studies, taken from [`docs/CONTENT.md`](docs/CONTENT.md).
+- **Videos** — a section linking to the personal YouTube channel. It only renders when
+  `NEXT_PUBLIC_YOUTUBE_URL` is set.
+- **Contacto** — a `mailto:` link through `NEXT_PUBLIC_CONTACT_EMAIL`, plus GitHub.
 
 ## Stack
 
@@ -145,9 +145,6 @@ to every visitor.
   Production value: `hola@manuelbotto.com` once Email Routing is live (see
   [Custom domain](#custom-domain--manuelbottocom)). When unset, the site falls back
   to the personal Gmail address.
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` — WhatsApp number in `54911XXXXXXXX` format
-  (digits only). When unset, the WhatsApp CTA is hidden instead of linking to a
-  fake number.
 - `NEXT_PUBLIC_YOUTUBE_URL` — personal YouTube channel, e.g.
   `https://www.youtube.com/@handle` (https `youtube.com` or `youtu.be` only). When
   unset or invalid, the Videos / devlog section and its nav link are hidden.
@@ -155,9 +152,8 @@ to every visitor.
 ## Structure
 
 ```text
-app/            Next.js pages (homepage + demo routes, including /demos/eventflow)
-components/     UI and interactive demo components
-lib/            content, demo logic
+app/            Next.js pages (homepage, layout, global styles)
+lib/            site content
 public/         static assets and Cloudflare response policy (_headers)
 tests/          unit and browser E2E tests
 docs/           product, content, validation and deployment documentation

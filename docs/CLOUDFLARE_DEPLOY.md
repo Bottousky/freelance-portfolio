@@ -55,8 +55,6 @@ deployment.
   falls back to the personal Gmail address when unset.
 - `NEXT_PUBLIC_YOUTUBE_URL` — optional; personal YouTube channel. When unset, the
   Videos / devlog section is hidden.
-- `NEXT_PUBLIC_WHATSAPP_NUMBER` — recommended; Argentina mobile format example
-  `54911XXXXXXXX`, digits only.
 
 ## Pre-deploy gates
 

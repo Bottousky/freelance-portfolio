@@ -1,5 +1,5 @@
 ---
-description: Final read-only acceptance reviewer. Compares implementation against the commercial and technical definition of done.
+description: Final read-only acceptance reviewer. Compares implementation against the definition of done in AGENTS.md.
 mode: subagent
 temperature: 0.1
 permission:
@@ -22,6 +22,6 @@ or
 
 `REPAIR`
 
-Then list evidence. Use REPAIR if any mandatory definition-of-done item lacks evidence, if demos are misleadingly presented as clients, if the CTA is unclear, or if a reported validation command did not actually run/pass.
+Then list evidence. Use REPAIR if any mandatory definition-of-done item lacks evidence, if any service, price, freelance CTA or WhatsApp link appears, if a fact is shown that is not in `docs/CONTENT.md`, if the contact is unclear, or if a reported validation command did not actually run/pass.
 
 Do not edit files.

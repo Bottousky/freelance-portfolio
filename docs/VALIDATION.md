@@ -25,24 +25,24 @@ Check at minimum:
 - 1440 × 900 desktop;
 - keyboard-only navigation;
 - no horizontal scroll;
-- CTA visible and understandable;
+- contact link visible and understandable;
 - cards remain legible without hover;
-- labels `REAL PROJECT` and `DEMONSTRATION PROJECT` are visible without opening case details.
+- check both light and dark color schemes (text, links and cards must be legible in each).
 
-## Commercial gates
+## Personal-site gates
 
 A first-time visitor should be able to answer in under 30 seconds:
 
-1. What does Manuel sell?
-2. What does it roughly cost to start?
-3. What proves he can build it?
+1. Who is Manuel Botto?
+2. What is he building?
+3. What did he study and where has he worked?
 4. How do I contact him?
 
 If any answer is ambiguous, the portfolio is not done even if the build passes.
 
 ## Performance target
 
-Prefer static/server-rendered content and minimal client JavaScript. Avoid adding libraries that exist only for visual flourish. If a 3D demo is added, lazy-load it below the fold or behind an explicit demo route.
+Prefer static/server-rendered content and minimal client JavaScript. Avoid adding libraries that exist only for visual flourish. If a heavy visual element is added, lazy-load it below the fold.
 
 ## Security review
 

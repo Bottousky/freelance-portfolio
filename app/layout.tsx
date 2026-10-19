@@ -1,9 +1,13 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
+import { Fraunces, Inter } from "next/font/google";
 import "./globals.css";
 
-const title = "Manuel Botto — Backend Software Engineer (Go, Distributed Systems)";
+const display = Fraunces({ subsets: ["latin"], variable: "--font-display", display: "swap" });
+const body = Inter({ subsets: ["latin"], variable: "--font-body", display: "swap" });
+
+const title = "Manuel Botto";
 const description =
-  "Backend Software Engineer building reliable distributed systems in Go — APIs, microservices, event-driven workflows — plus React/TypeScript product engineering. Available for focused backend engagements, hourly or fixed scope.";
+  "Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. Hago juegos —Juntopia, Proyecto Roxana— y cuento cómo los construyo.";
 
 export const metadata: Metadata = {
   title,
@@ -12,23 +16,19 @@ export const metadata: Metadata = {
   authors: [{ name: "Manuel Botto" }],
   creator: "Manuel Botto",
   keywords: [
-    "Backend Software Engineer",
+    "Manuel Botto",
+    "Juntopia",
+    "Proyecto Roxana",
+    "desarrollo de videojuegos",
+    "juegos de cartas",
+    "backend",
     "Go",
-    "Distributed Systems",
-    "Microservices",
-    "Event-Driven Architecture",
-    "REST API",
-    "React",
-    "TypeScript",
-    "Next.js",
-    "Three.js",
-    "Playwright",
-    "Cloudflare Workers",
-    "OpenNext",
-    "Freelance Developer",
+    "electrónica",
+    "docencia",
   ],
   openGraph: {
     type: "website",
+    locale: "es_AR",
     title,
     description,
     siteName: "Manuel Botto",
@@ -44,9 +44,16 @@ export const metadata: Metadata = {
   },
 };
 
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f5efe4" },
+    { media: "(prefers-color-scheme: dark)", color: "#14110d" },
+  ],
+};
+
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en">
+    <html lang="es" className={`${display.variable} ${body.variable}`}>
       <body>{children}</body>
     </html>
   );
