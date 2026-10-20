@@ -87,7 +87,7 @@ Do not create an open-ended agent loop.
 All of the following are mandatory:
 
 - `<html lang="es">`; all visible copy is in Spanish.
-- Homepage sections: **Proyectos**, **Pasiones**, **Trayectoria** (trabajo + estudios),
+- Homepage sections: **Proyectos**, **Pasiones**, **Fuera del código** (futsal), **Trayectoria** (trabajo + estudios),
   optional **Videos** (rendered only when `NEXT_PUBLIC_YOUTUBE_URL` is set), and
   **Contacto** (a `mailto:` link).
 - Every project, job, degree and passion shown is backed by `docs/CONTENT.md`.

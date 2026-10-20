@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import * as content from "../../lib/content";
-import { buildYoutubeUrl, contact, passions, profile, projects, studies, work } from "../../lib/content";
+import { buildYoutubeUrl, contact, futsal, marquee, passions, profile, projects, studies, work } from "../../lib/content";
 
 describe("personal site content", () => {
   it("introduces Manuel without selling freelance services", () => {
@@ -42,7 +42,8 @@ describe("personal site content", () => {
   });
 
   it("lists the electronics degree and the teaching role", () => {
-    expect(studies.map((item) => item.title)).toContain("Técnico en Electrónica");
+    expect(studies.map((item) => item.title)).toContain("Técnico Electrónico");
+    expect(studies.find((item) => item.title === "Técnico Electrónico")?.place).toBe("Escuela Técnica Otto Krause");
     expect(work.some((entry) => entry.role === "Docente")).toBe(true);
     expect(work.find((entry) => entry.current)?.place).toBe("Mercado Libre");
   });
@@ -73,5 +74,28 @@ describe("YouTube channel configuration", () => {
 
   it("hides the Videos section when the environment has no channel", () => {
     expect(contact.youtubeUrl).toBeNull();
+  });
+});
+
+describe("hero focus and Manuel's own story", () => {
+  it("keeps the hero generic: Software Engineer, without stack details", () => {
+    expect(profile.lead).toMatch(/^Software Engineer en Mercado Libre/);
+    expect(profile.facts).toContain("Software Engineer");
+    expect(JSON.stringify([profile.lead, profile.facts, profile.roles])).not.toMatch(/\bGo\b|backend/i);
+  });
+
+  it("puts his own projects in the carousel instead of traditional games", () => {
+    expect(marquee.mine).toContain("Juntopia");
+    expect(JSON.stringify(marquee)).not.toMatch(/Truco|Brisca|Generala/);
+  });
+
+  it("never presents the UBA studies as a finished engineering degree", () => {
+    expect(JSON.stringify(content)).not.toMatch(/ingenier[oa] (en|informátic)|t[ií]tulo de ingenier/i);
+    expect(studies.find((item) => item.place === "Universidad de Buenos Aires")?.title).toBe("CBC de Ingeniería");
+  });
+
+  it("tells the futsal story with Racing Club", () => {
+    expect(futsal.club).toBe("Racing Club");
+    expect(futsal.badge).toBe("Campeón 2026");
   });
 });

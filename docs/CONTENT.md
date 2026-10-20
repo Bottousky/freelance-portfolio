@@ -5,13 +5,24 @@ rules below are in English. If a fact is not listed here, the site must not publ
 
 ## Positioning
 
-> Desarrollador backend en Mercado Libre, técnico electrónico y docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
+> Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana.
+
+The hero says only "Software Engineer". Backend, Go and other specifics belong further
+down (career, project tags), never in the hero line or hero chips.
+
+Thread for the whole site (manifesto):
+
+> Me interesa entender cómo funcionan las cosas, construir otras nuevas y mejorar
+> continuamente lo que hago. Ya sea desarrollando software, creando experiencias
+> educativas o compitiendo en una cancha.
 
 ## Trabajo (work)
 
-- **Software Engineer, Mercado Libre** — noviembre 2023 – presente.
+- **Software Engineer, Mercado Libre** — noviembre 2023 – presente. Joined as
+  Software Developer Jr; Semi Senior since February 2026.
   Backend in Go: microservices, APIs, event-driven systems, observability, on-call,
   code review and mentoring.
+- About four years working in software/systems overall.
 - **Software Developer, Telectrónica Peajes S.A.** — 2022–2023.
   Desktop software in C++ and C# for toll systems.
 - **Docente, escuela técnica secundaria** — 2020–2023.
@@ -23,9 +34,20 @@ school position.
 
 ## Estudios (studies)
 
-- **Técnico en Electrónica** (technical secondary degree). Institution and year are not
-  provided. Do not add them.
+- **Técnico Electrónico**, Escuela Técnica Otto Krause (technical secondary degree).
+  Year not provided; do not add it.
+- **CBC de Ingeniería**, Universidad de Buenos Aires — passed, with some progress in
+  Ingeniería Informática. Never present it as a completed engineering degree, and never
+  call Manuel "ingeniero".
 - Self-taught, plus courses, for everything else.
+
+## Futsal
+
+- Played football since childhood (youth categories). Returned to adult competition in
+  futsal. Plays for **Racing Club**; in 2026 the team played the final and won the
+  championship ("Campeón 2026").
+- Lessons he relates to work: training even without a match, playing whatever role the
+  team needs, deciding fast under pressure.
 
 ## Pasiones (passions)
 
@@ -36,9 +58,12 @@ school position.
 ## Proyectos (projects)
 
 - **Juntopia** — a shared Spanish-deck card game for get-togethers. Each player uses
-  their own phone. Modes: truco, brisca, generala, free deck. Launches in stores on
+  their own phone. Modes: truco, brisca, generala, free deck (keep these in docs; the
+  site focuses on Juntopia itself rather than listing traditional games). Launches in stores on
   1 Dec 2026. "A la distancia" with Atlas comes later. Link: `https://juntopia.com`.
-- **Proyecto Roxana** — an educational adventure game about electricity for ages 12–18.
+- **Proyecto Roxana** — Manuel's most ambitious project: an interactive learning universe
+  that turns mathematics, physics, electronics and programming into playable
+  experiences, for ages 12–18.
   In development. Working title. **No public link.** Its public name is not decided.
 - **Juego de Hormigas** — a 3D expedition adventure. An ant is carried far from its
   colony, and everyday human places become continents. Early design. Public repo:
@@ -61,3 +86,6 @@ school position.
 - Do not describe any project as running in production or as shipped unless this file
   says so.
 - Do not mention any name for Proyecto Roxana other than its working title.
+- Keep private: salary, bonuses and finances; family details; housing plans; Roxana's
+  monetization goals; internal Mercado Libre metrics or systems. Growth aspirations
+  (Sr, tech lead) may appear only as a direction, never as a title.

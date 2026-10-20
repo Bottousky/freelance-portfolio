@@ -10,7 +10,7 @@ path is email.
 
 Use this line verbatim (Spanish), in the first viewport:
 
-> Desarrollador backend en Mercado Libre, técnico electrónico y docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
+> Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana.
 
 ## Audience
 
@@ -39,6 +39,7 @@ Headings are in Spanish.
 1. **Inicio** (hero) — name, positioning line, short links to the sections below.
 2. **Proyectos** — Juntopia, Proyecto Roxana, Juego de Hormigas, EventFlow.
 3. **Pasiones** — video games, board and card games, teaching and science/tech outreach.
+4. **Fuera del código** — futsal at Racing Club (champion 2026) and what it teaches him.
 4. **Trayectoria** — work (trabajo) and studies (estudios).
 5. **Videos** — rendered only when `NEXT_PUBLIC_YOUTUBE_URL` is set.
 6. **Contacto** — a `mailto:` link, plus GitHub.

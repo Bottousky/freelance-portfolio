@@ -8,7 +8,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 const title = "Manuel Botto";
 const description =
-  "Desarrollador backend en Mercado Libre, técnico electrónico y docente. Hago juegos —Juntopia, Proyecto Roxana— y cuento cómo los construyo.";
+  "Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana, y juego al futsal en Racing.";
 
 export const metadata: Metadata = {
   title,
@@ -22,9 +22,9 @@ export const metadata: Metadata = {
     "Proyecto Roxana",
     "desarrollo de videojuegos",
     "juegos de cartas",
-    "backend",
-    "Go",
+    "software engineer",
     "electrónica",
+    "futsal",
     "docencia",
   ],
   openGraph: {

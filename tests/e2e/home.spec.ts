@@ -4,16 +4,16 @@ test("home introduces Manuel in Spanish", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Hola, soy\s+Manuel Botto/);
-  await expect(page.getByText(/Desarrollador backend en Mercado Libre/)).toBeVisible();
+  await expect(page.getByText(/Software Engineer en Mercado Libre/)).toBeVisible();
 });
 
 test("home shows projects, passions and career sections", async ({ page }) => {
   await page.goto("/");
-  for (const id of ["proyectos", "pasiones", "trayectoria", "contacto"]) {
+  for (const id of ["proyectos", "pasiones", "futsal", "trayectoria", "contacto"]) {
     await expect(page.locator(`#${id}`)).toBeVisible();
   }
   const trayectoria = page.locator("#trayectoria");
-  await expect(trayectoria.getByRole("heading", { name: "Técnico en Electrónica" })).toBeVisible();
+  await expect(trayectoria.getByRole("heading", { name: "Técnico Electrónico" })).toBeVisible();
   await expect(trayectoria.getByText("Programación, electrónica, matemática y física.")).toBeVisible();
 });
 

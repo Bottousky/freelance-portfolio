@@ -97,14 +97,16 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .rotator { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35em; margin-top: 28px; font-family: var(--font-display), sans-serif; font-weight: 500; font-size: clamp(20px, 2.6vw, 34px); letter-spacing: -.02em; }
 .rotPrefix { color: var(--muted); }
 .rotWindow { display: inline-block; height: 1.3em; overflow: hidden; vertical-align: bottom; }
-.rotTrack { display: flex; flex-direction: column; animation: rotate 11s cubic-bezier(.7, 0, .2, 1) infinite; }
+.rotTrack { display: flex; flex-direction: column; animation: rotate 14s cubic-bezier(.7, 0, .2, 1) infinite; }
 .rotTrack span { height: 1.3em; line-height: 1.3em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }
+/* Five roles plus a copy of the first, so the loop restarts seamlessly. */
 @keyframes rotate {
-  0%, 20% { transform: translateY(0); }
-  25%, 45% { transform: translateY(-1.3em); }
-  50%, 70% { transform: translateY(-2.6em); }
-  75%, 95% { transform: translateY(-3.9em); }
-  100% { transform: translateY(-5.2em); }
+  0%, 16% { transform: translateY(0); }
+  20%, 36% { transform: translateY(-1.3em); }
+  40%, 56% { transform: translateY(-2.6em); }
+  60%, 76% { transform: translateY(-3.9em); }
+  80%, 96% { transform: translateY(-5.2em); }
+  100% { transform: translateY(-6.5em); }
 }
 .lead { max-width: 44ch; margin-top: 22px; font-size: clamp(17px, 1.6vw, 20px); color: var(--muted); }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
@@ -130,6 +132,11 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 .marqueeTrack span::after { content: "✦"; margin-left: 44px; font-size: .6em; vertical-align: middle; color: var(--violet); }
 .marqueeRow.reverse span { color: transparent; -webkit-text-stroke: 1px rgba(255, 255, 255, .38); }
 @keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ---------- Manifesto ---------- */
+.manifesto { padding: 120px 0 8px; }
+.manifesto p { max-width: 22ch; font-family: var(--font-display), sans-serif; font-weight: 600; font-size: clamp(30px, 4.6vw, 64px); line-height: 1.1; letter-spacing: -.035em; }
+.manifesto em { display: block; margin-top: .3em; font-size: .62em; line-height: 1.25; max-width: 30ch; }
 
 /* ---------- Reveal on scroll (only once JS is running) ---------- */
 html.js [data-reveal] { opacity: 0; translate: 0 32px; transition: opacity .8s ease, translate .9s cubic-bezier(.2, .7, .2, 1); transition-delay: var(--d, 0ms); }
@@ -183,15 +190,22 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
 
 /* Juntopia: a floating hand of cards that fans out on hover. */
 .vHand { position: relative; width: 320px; height: 240px; }
-.vCard { position: absolute; left: 50%; top: 50%; width: 124px; height: 176px; margin: -88px 0 0 -62px; border-radius: 14px; display: grid; place-items: center;
+.vCard { position: absolute; left: 50%; top: 50%; width: 136px; height: 184px; margin: -92px 0 0 -68px; border-radius: 14px; display: grid; place-items: center;
   background: linear-gradient(160deg, #1d1734, #0e0c1a); border: 1px solid rgba(255, 255, 255, .18); box-shadow: 0 24px 50px -20px rgb(var(--accent) / .7);
-  transform-origin: 50% 140%; transform: rotate(calc((var(--i) - 1) * 13deg)) translateX(calc((var(--i) - 1) * 64px));
+  transform-origin: 50% 140%; transform: rotate(calc((var(--i) - 1) * 13deg)) translateX(calc((var(--i) - 1) * 82px));
   transition: transform .6s cubic-bezier(.2, .7, .2, 1); animation: float 5s ease-in-out infinite; animation-delay: calc(var(--i) * -1.4s); }
 .vCard::before { content: ""; position: absolute; inset: 7px; border-radius: 9px; border: 1px solid rgb(var(--accent) / .35); }
-.vCard strong { font-family: var(--font-display), sans-serif; font-size: 16px; color: rgb(var(--accent)); }
+.vCard strong { font-family: var(--font-display), sans-serif; font-size: 12px; line-height: 1.3; text-align: center; padding: 0 12px; color: var(--muted); }
+/* Side cards peek out from behind the brand card, so their label hugs the visible edge. */
+.vCard:nth-child(1) { place-items: center start; }
+.vCard:nth-child(1) strong { text-align: left; padding-right: 58px; }
+.vCard:nth-child(3) { place-items: center end; }
+.vCard:nth-child(3) strong { text-align: right; padding-left: 58px; }
+.vCardBrand strong { font-size: 15px; padding: 0 8px; color: rgb(var(--accent)); }
+.vCardBrand { background: linear-gradient(160deg, #2a1636, #120c1d); }
 .vPip { position: absolute; top: 12px; left: 13px; font-family: var(--font-mono), monospace; font-size: 13px; color: var(--muted); }
 .vPipEnd { top: auto; left: auto; bottom: 12px; right: 13px; transform: rotate(180deg); }
-.tile:hover .vCard { transform: rotate(calc((var(--i) - 1) * 19deg)) translateX(calc((var(--i) - 1) * 92px)); }
+.tile:hover .vCard { transform: rotate(calc((var(--i) - 1) * 17deg)) translateX(calc((var(--i) - 1) * 104px)); }
 @keyframes float { 50% { translate: 0 -10px; } }
 
 /* Proyecto Roxana: current runs through a circuit and lights a bulb. */
@@ -235,6 +249,26 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
 .passion p { color: var(--muted); }
 .passion .chips { margin-top: auto; }
 
+/* ---------- Futsal ---------- */
+.futsalPanel { --accent: 51 225 255; position: relative; display: grid; grid-template-columns: 1fr 1.1fr; gap: 40px; align-items: center; padding: 48px; border-radius: 28px; border: 1px solid var(--line); overflow: hidden;
+  background: radial-gradient(60% 90% at 100% 50%, rgba(51, 225, 255, .14), transparent 70%), linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .012)); }
+.futsalPanel::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: 0; transition: opacity .35s ease; background: radial-gradient(520px circle at var(--mx, 50%) var(--my, 0%), rgb(var(--accent) / .12), transparent 45%); }
+.futsalPanel:hover::before { opacity: 1; }
+.futsalText { position: relative; display: flex; flex-direction: column; gap: 18px; }
+.futsalText h2 { font-size: clamp(32px, 4.4vw, 56px); letter-spacing: -.035em; }
+.futsalText > p:not(.eyebrow):not(.futsalMeta) { color: var(--muted); font-size: 18px; }
+.futsalMeta { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; font-size: 13px; color: var(--dim); }
+.lessons { display: grid; gap: 10px; margin-top: 4px; }
+.lessons li { position: relative; padding-left: 26px; font-weight: 600; }
+.lessons li::before { content: ""; position: absolute; left: 0; top: .55em; width: 12px; height: 2px; background: var(--grad); }
+.futsalVisual { position: relative; }
+.vCourt { width: 100%; height: auto; overflow: visible; }
+.vCourt .courtLine { fill: none; stroke: rgba(255, 255, 255, .22); stroke-width: 2; }
+.vCourt .goal { fill: rgba(255, 255, 255, .08); stroke: var(--ink); stroke-width: 2; }
+.vCourt .passPath { fill: none; stroke: rgb(51 225 255 / .6); stroke-width: 2; stroke-dasharray: 4 8; animation: dash 1.2s linear infinite; }
+.vCourt .player { fill: rgb(51 225 255 / .2); stroke: var(--cyan); stroke-width: 2; }
+.vCourt .ball { fill: #fff; filter: drop-shadow(0 0 6px rgba(255, 255, 255, .9)); }
+
 /* ---------- Path (work + studies) ---------- */
 .pathGrid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 64px; }
 .colTitle { font-size: 12px; font-weight: 500; letter-spacing: .22em; text-transform: uppercase; color: var(--dim); margin-bottom: 22px; }
@@ -252,6 +286,7 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
 .studyList { display: grid; gap: 14px; }
 .studyList li { padding: 22px 24px; border-radius: 18px; border: 1px solid var(--line); background: linear-gradient(180deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .012)); }
 .studyList h4 { font-size: 18px; margin-bottom: 6px; }
+.studyPlace { font-size: 12px; color: var(--cyan); margin-bottom: 6px; }
 .studyList p { color: var(--muted); }
 
 /* ---------- Videos ---------- */
@@ -290,6 +325,7 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
   .passionGrid, .pathGrid { grid-template-columns: 1fr; }
   .passion { min-height: 0; }
   .videoPanel { grid-template-columns: 1fr; justify-items: start; }
+  .futsalPanel { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 680px) {
@@ -301,10 +337,12 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
   .bento { grid-template-columns: 1fr; }
   .tile-juntopia, .tile-proyecto-roxana, .tile-juego-de-hormigas, .tile-eventflow { grid-column: auto; }
   .tile-juntopia .tileVisual, .tileVisual { height: 220px; }
-  .vHand { transform: scale(.82); }
+  .vHand { transform: scale(.72); }
   .tileBody { padding: 22px 22px 26px; }
   .section { padding-top: 96px; }
   .videoPanel { padding: 30px 24px; }
+  .futsalPanel { padding: 30px 22px; }
+  .manifesto { padding-top: 88px; }
   .contact { margin-top: 80px; padding: 100px 0 90px; }
 }
 

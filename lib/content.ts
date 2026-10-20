@@ -32,15 +32,20 @@ export const contact = {
 export const profile = {
   name: "Manuel Botto",
   greeting: "Hola, soy",
-  lead: "Desarrollador backend en Mercado Libre, técnico electrónico y docente. En mi tiempo libre hago juegos y cuento cómo los construyo.",
+  lead: "Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana.",
   // Rotating endings for "Yo …" in the hero; the full facts are stated in `lead`.
-  roles: ["programo backend en Go.", "hago videojuegos.", "diseño juegos de cartas.", "enseño y divulgo."],
-  facts: ["Argentina", "Backend en Go", "Técnico en Electrónica", "Docente"],
+  roles: ["escribo software.", "construyo Juntopia.", "diseño Proyecto Roxana.", "enseño y divulgo.", "juego al futsal."],
+  facts: ["Argentina", "Software Engineer", "Técnico Electrónico", "Docente"],
+  // The thread that ties the whole site together.
+  manifesto: {
+    lead: "Me interesa entender cómo funcionan las cosas, construir otras nuevas y mejorar continuamente lo que hago.",
+    tail: "Ya sea desarrollando software, creando experiencias educativas o compitiendo en una cancha.",
+  },
 } as const;
 
 export const marquee = {
   craft: ["Go", "TypeScript", "React Native", "Cloudflare Workers", "Phaser", "Three.js", "C / C++", "SQL / NoSQL"],
-  play: ["Truco", "Brisca", "Generala", "Circuitos", "Física", "Matemática", "Aventuras 3D", "Devlogs"],
+  mine: ["Juntopia", "Proyecto Roxana", "A la distancia", "Juego de Hormigas", "EventFlow", "Futsal", "Docencia", "Devlogs"],
 } as const;
 
 export type Project = {
@@ -62,7 +67,7 @@ export const projects: readonly Project[] = [
     kind: "Juego de cartas para juntadas",
     title: "Juntopia",
     summary:
-      "Un mazo compartido para juntadas: cada persona juega desde su celular en la misma mesa. Truco, brisca, generala y mazo libre.",
+      "Un mazo compartido para juntadas: cada persona juega desde su celular, en la misma mesa, sin repartir cartas de papel.",
     note: "Próximamente, «A la distancia»: juegos de mesa largos para seguir jugando aunque estemos lejos, empezando por Atlas.",
     tags: ["React Native", "Expo", "Cloudflare Workers", "WebSocket"],
     href: "https://juntopia.com",
@@ -74,7 +79,7 @@ export const projects: readonly Project[] = [
     kind: "Videojuego educativo",
     title: "Proyecto Roxana",
     summary:
-      "Una aventura para aprender electricidad, pensada para chicos y chicas de 12 a 18 años. Junta dos cosas que me gustan: hacer juegos y enseñar.",
+      "Un universo interactivo de aprendizaje que convierte matemática, física, electrónica y programación en experiencias jugables, para chicos y chicas de 12 a 18 años. Es mi proyecto más ambicioso.",
     note: "Nombre de trabajo: el nombre público se anuncia más adelante.",
     tags: ["TypeScript", "Phaser", "Three.js"],
     href: null,
@@ -116,7 +121,7 @@ export const passions = [
   {
     slug: "juegos-de-mesa",
     title: "Juegos de mesa y cartas",
-    body: "Truco, brisca, generala y los juegos de conquista de siempre. Juntopia nació para la sobremesa; «A la distancia», para seguir jugando con quien vive lejos.",
+    body: "De las sobremesas con cartas nació Juntopia; de las ganas de seguir jugando con quien vive lejos, «A la distancia» y Atlas.",
     related: ["Juntopia"],
   },
   {
@@ -127,6 +132,19 @@ export const passions = [
   },
 ] as const;
 
+export const futsal = {
+  sport: "Futsal",
+  club: "Racing Club",
+  title: { lead: "La disciplina también se", em: "entrena." },
+  body: "Juego al fútbol desde chico, en infantiles y juveniles. Volví a competir de grande, en futsal, y hoy juego en Racing Club: en 2026 jugamos la final y salimos campeones.",
+  badge: "Campeón 2026",
+  lessons: [
+    "Entrenar aunque no haya partido.",
+    "Jugar el rol que el equipo necesite.",
+    "Decidir rápido, bajo presión.",
+  ],
+} as const;
+
 export const work = [
   {
     role: "Software Engineer",
@@ -134,7 +152,7 @@ export const work = [
     period: "Nov 2023 — hoy",
     current: true,
     summary:
-      "Construyo y opero servicios backend en Go para sistemas de experiencia de cliente: microservicios, APIs, arquitecturas orientadas a eventos y observabilidad. También hago guardias, reviso código y acompaño a quienes se pasan a backend.",
+      "Entré como desarrollador Jr y soy Semi Senior desde febrero de 2026. Construyo y opero servicios backend en Go para sistemas de experiencia de cliente: microservicios, APIs, arquitecturas orientadas a eventos y observabilidad.",
   },
   {
     role: "Desarrollador de software",
@@ -154,11 +172,18 @@ export const work = [
 
 export const studies = [
   {
-    title: "Técnico en Electrónica",
-    detail: "Título secundario técnico.",
+    title: "Técnico Electrónico",
+    place: "Escuela Técnica Otto Krause",
+    detail: "Título secundario técnico: la base de todo lo que vino después.",
+  },
+  {
+    title: "CBC de Ingeniería",
+    place: "Universidad de Buenos Aires",
+    detail: "Aprobado, con recorrido en Ingeniería Informática.",
   },
   {
     title: "Autodidacta",
+    place: "Siempre",
     detail: "Todo lo demás lo aprendí con cursos, documentación y proyectos propios.",
   },
 ] as const;

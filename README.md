@@ -4,8 +4,8 @@ Personal website of Manuel Botto, served at `manuelbotto.com`. The copy is in Sp
 It shows his projects, his career and studies, his passions and, when configured, his
 videos. The only contact is email.
 
-Manuel is a backend engineer at Mercado Libre, an electronics technician and a
-teacher. In his free time he makes games and writes about how he builds them.
+Manuel is a software engineer at Mercado Libre, an electronics technician and a
+teacher. He is building Juntopia and Proyecto Roxana, and plays futsal for Racing Club.
 
 ## What's here
 
@@ -20,6 +20,7 @@ teacher. In his free time he makes games and writes about how he builds them.
     reference implementation:
     [github.com/Bottousky/eventflow](https://github.com/Bottousky/eventflow).
 - **Pasiones** — video games, board and card games, and teaching and science/tech outreach.
+- **Fuera del código** — futsal at Racing Club, champion in 2026.
 - **Trayectoria** — work and studies, taken from [`docs/CONTENT.md`](docs/CONTENT.md).
 - **Videos** — a section linking to the personal YouTube channel. It only renders when
   `NEXT_PUBLIC_YOUTUBE_URL` is set.

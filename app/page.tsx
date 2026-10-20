@@ -2,7 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { CircuitField } from "@/components/CircuitField";
 import { CopyEmail } from "@/components/CopyEmail";
 import { Interactions } from "@/components/Interactions";
-import { contact, marquee, passions, profile, projects, studies, tools, work } from "@/lib/content";
+import { contact, futsal, marquee, passions, profile, projects, studies, tools, work } from "@/lib/content";
 
 const emailHref = `mailto:${contact.email}`;
 
@@ -17,11 +17,11 @@ const projectAccent: Record<string, string> = {
 function JuntopiaVisual() {
   return (
     <div className="vHand" aria-hidden="true">
-      {["Truco", "Brisca", "Generala"].map((game, i) => (
-        <div className="vCard" key={game} style={{ "--i": i } as CSSProperties}>
-          <span className="vPip">{["1", "7", "12"][i]}</span>
-          <strong>{game}</strong>
-          <span className="vPip vPipEnd">{["1", "7", "12"][i]}</span>
+      {["En la mesa", "Juntopia", "A la distancia"].map((label, i) => (
+        <div className={`vCard${i === 1 ? " vCardBrand" : ""}`} key={label} style={{ "--i": i } as CSSProperties}>
+          <span className="vPip">J</span>
+          <strong>{label}</strong>
+          <span className="vPip vPipEnd">J</span>
         </div>
       ))}
     </div>
@@ -127,6 +127,25 @@ function PassionIcon({ slug }: { slug: string }) {
   );
 }
 
+function FutsalVisual() {
+  // Passing triangle on a futsal court; the ball ends in the goal.
+  const pass = "M70 150 L180 70 L290 150 L458 110";
+  return (
+    <svg className="vCourt" viewBox="0 0 480 220" aria-hidden="true">
+      <rect className="courtLine" x="20" y="14" width="440" height="192" rx="6" />
+      <line className="courtLine" x1="240" y1="14" x2="240" y2="206" />
+      <circle className="courtLine" cx="240" cy="110" r="34" />
+      <path className="courtLine" d="M20 50 a62 62 0 0 1 0 120 M460 50 a62 62 0 0 0 0 120" />
+      <rect className="goal" x="460" y="88" width="12" height="44" rx="2" />
+      <path className="passPath" d={pass} />
+      {[[70, 150], [180, 70], [290, 150]].map(([x, y]) => <circle key={`${x}-${y}`} className="player" cx={x} cy={y} r="9" />)}
+      <circle className="ball" r="6">
+        <animateMotion dur="3.6s" repeatCount="indefinite" path={pass} keyPoints="0;0.306;0.306;0.612;0.612;1;1" keyTimes="0;0.2;0.3;0.5;0.6;0.85;1" calcMode="linear" />
+      </circle>
+    </svg>
+  );
+}
+
 function MarqueeRow({ words, reverse }: { words: readonly string[]; reverse?: boolean }) {
   const items = [...words, ...words];
   return (
@@ -149,6 +168,7 @@ export default function Home() {
           <nav aria-label="Secciones">
             <a href="#proyectos">Proyectos</a>
             <a href="#pasiones">Pasiones</a>
+            <a href="#futsal">Futsal</a>
             <a href="#trayectoria">Trayectoria</a>
             {contact.youtubeUrl ? <a href="#videos">Videos</a> : null}
             <a className="navContact" href="#contacto">Contacto</a>
@@ -185,9 +205,15 @@ export default function Home() {
         </section>
 
         <div className="marquee" aria-hidden="true">
-          <MarqueeRow words={marquee.craft} />
-          <MarqueeRow words={marquee.play} reverse />
+          <MarqueeRow words={marquee.mine} />
+          <MarqueeRow words={marquee.craft} reverse />
         </div>
+
+        <section className="manifesto wrap" aria-label="Lo que me mueve, en una frase">
+          <p data-reveal>
+            {profile.manifesto.lead} <em>{profile.manifesto.tail}</em>
+          </p>
+        </section>
 
         <section id="proyectos" className="section wrap" aria-labelledby="proyectos-title">
           <header className="sectionHead" data-reveal>
@@ -250,10 +276,26 @@ export default function Home() {
           </div>
         </section>
 
+        <section id="futsal" className="section wrap" aria-labelledby="futsal-title">
+          <div className="futsalPanel" data-glow data-reveal>
+            <div className="futsalText">
+              <p className="eyebrow mono">03 / Fuera del código</p>
+              <h2 id="futsal-title">{futsal.title.lead} <em>{futsal.title.em}</em></h2>
+              <p className="futsalMeta"><span className="status">{futsal.badge}</span><span className="mono">{futsal.sport} · {futsal.club}</span></p>
+              <p>{futsal.body}</p>
+              <ul className="lessons" aria-label="Lo que me llevo de la cancha">
+                {futsal.lessons.map((lesson) => <li key={lesson}>{lesson}</li>)}
+              </ul>
+            </div>
+            <div className="futsalVisual"><FutsalVisual /></div>
+          </div>
+        </section>
+
         <section id="trayectoria" className="section wrap" aria-labelledby="trayectoria-title">
           <header className="sectionHead" data-reveal>
-            <p className="eyebrow mono">03 / Trayectoria</p>
-            <h2 id="trayectoria-title">De la electrónica al backend, <em>siempre docente</em>.</h2>
+            <p className="eyebrow mono">04 / Trayectoria</p>
+            <h2 id="trayectoria-title">De la electrónica al software, <em>siempre docente</em>.</h2>
+            <p>Unos cuatro años trabajando en sistemas, con una base técnica que arrancó en la escuela.</p>
           </header>
           <div className="pathGrid">
             <div data-reveal>
@@ -273,6 +315,7 @@ export default function Home() {
               <ul className="studyList">
                 {studies.map((study) => (
                   <li key={study.title} data-glow>
+                    <p className="studyPlace mono">{study.place}</p>
                     <h4>{study.title}</h4>
                     <p>{study.detail}</p>
                   </li>
@@ -291,7 +334,7 @@ export default function Home() {
             <div className="videoPanel" data-glow data-reveal>
               <span className="playOrb" aria-hidden="true"><span /></span>
               <div>
-                <p className="eyebrow mono">04 / Videos</p>
+                <p className="eyebrow mono">05 / Videos</p>
                 <h2 id="videos-title">Devlog: construyendo <em>en público</em>.</h2>
                 <p>Cómo hago Juntopia, Proyecto Roxana y lo que venga después, contado en video.</p>
               </div>
