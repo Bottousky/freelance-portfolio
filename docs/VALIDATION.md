@@ -27,7 +27,8 @@ Check at minimum:
 - no horizontal scroll;
 - contact link visible and understandable;
 - cards remain legible without hover;
-- check both light and dark color schemes (text, links and cards must be legible in each).
+- the dark theme is used under both OS color schemes; text, links and cards stay legible;
+- with `prefers-reduced-motion: reduce`, the canvas, marquee and reveals stop moving and all content is visible.
 
 ## Personal-site gates
 

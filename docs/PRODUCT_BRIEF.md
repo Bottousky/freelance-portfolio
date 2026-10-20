@@ -70,5 +70,5 @@ Headings are in Spanish.
 ## Success
 
 - A reader leaves knowing who Manuel is and what he makes.
-- The page reads well on mobile, and in both light and dark color schemes.
+- The page reads well on mobile and feels alive: an interactive circuit hero, project tiles with their own animation, and motion that respects reduced-motion settings.
 - No numeric targets are set. Do not invent baselines.

@@ -31,15 +31,16 @@ export const contact = {
 
 export const profile = {
   name: "Manuel Botto",
-  greeting: "Hola, soy Manuel.",
+  greeting: "Hola, soy",
   lead: "Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. En mi tiempo libre hago juegos y cuento cómo los construyo.",
+  // Rotating endings for "Yo …" in the hero; the full facts are stated in `lead`.
+  roles: ["programo backend en Go.", "hago videojuegos.", "diseño juegos de cartas.", "enseño y divulgo."],
   facts: ["Argentina", "Backend en Go", "Técnico en Electrónica", "Ex docente"],
-  // Decorative hand of cards in the hero; the same facts are stated in `lead`.
-  hand: [
-    { index: "1", word: "Código", caption: "Backend en Go" },
-    { index: "7", word: "Juegos", caption: "De cartas, educativos y de aventura" },
-    { index: "12", word: "Aula", caption: "Programación, electrónica, matemática y física" },
-  ],
+} as const;
+
+export const marquee = {
+  craft: ["Go", "TypeScript", "React Native", "Cloudflare Workers", "Phaser", "Three.js", "C / C++", "SQL / NoSQL"],
+  play: ["Truco", "Brisca", "Generala", "Circuitos", "Física", "Matemática", "Aventuras 3D", "Devlogs"],
 } as const;
 
 export type Project = {

@@ -4,7 +4,8 @@ import { buildYoutubeUrl, contact, passions, profile, projects, studies, work } 
 
 describe("personal site content", () => {
   it("introduces Manuel without selling freelance services", () => {
-    expect(profile.greeting).toBe("Hola, soy Manuel.");
+    expect(`${profile.greeting} ${profile.name}`).toBe("Hola, soy Manuel Botto");
+    expect(profile.roles.length).toBeGreaterThanOrEqual(3);
     expect(profile.lead).toMatch(/Mercado Libre/);
     expect(Object.keys(content)).not.toContain("services");
     expect(JSON.stringify(content)).not.toMatch(/USD|freelance|WhatsApp/i);

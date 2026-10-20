@@ -31,7 +31,11 @@ If two sources disagree, the higher item wins. Do not silently invent a compromi
 - Do not delete failing tests as a repair strategy.
 - Keep dependencies small. Do not add a database, auth layer, CMS or heavy animation
   library. Do not require paid external APIs to render the site.
-- Light and dark color schemes must both be legible.
+- The site uses one dark theme regardless of the OS color scheme; core text and links must
+  keep WCAG AA contrast on it.
+- Motion (hero circuit canvas, marquee, reveals, card effects) is progressive enhancement:
+  content must render without JavaScript, and `prefers-reduced-motion` must stop it.
+  Keep it dependency-free (Canvas 2D + CSS); pause the canvas when it is off-screen.
 - Keep the site fast and useful on desktop and mobile. Prefer static/server-rendered
   content and minimal client JavaScript.
 - Do not look like a generic AI-generated template. Prefer deliberate typography,
@@ -89,7 +93,7 @@ All of the following are mandatory:
 - Every project, job, degree and passion shown is backed by `docs/CONTENT.md`.
 - Mobile viewport (390 × 844) does not overflow horizontally.
 - Keyboard focus remains visible.
-- Light and dark color schemes are both legible on core text and links.
+- Core text and links are legible on the dark theme, and reduced motion disables animation.
 - `npm run verify:structure` passes.
 - `npm run lint` passes.
 - `npm run typecheck` passes.

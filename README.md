@@ -153,6 +153,7 @@ to every visitor.
 
 ```text
 app/            Next.js pages (homepage, layout, global styles)
+components/     client components (hero circuit canvas, scroll/pointer effects, copy email)
 lib/            site content
 public/         static assets and Cloudflare response policy (_headers)
 tests/          unit and browser E2E tests
