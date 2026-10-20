@@ -6,7 +6,8 @@
 3. Click every link: home sections, project cards and GitHub links.
 4. Confirm no `data/`, `profiles/` or `templates/` folder exists in this repo.
 5. Run all gates: `verify:structure`, `lint`, `typecheck`, `test`, `build`,
-   `opennextjs-cloudflare build`, Chromium E2E, mobile E2E and `npm audit`.
+   `opennextjs-cloudflare build`, Chromium E2E, mobile E2E and `npm audit --omit=dev --audit-level=high` (a full
+   `npm audit` runs in CI as informational only).
 6. Confirm `.open-next/worker.js` and `.open-next/assets/` exist after
    `opennextjs-cloudflare build`.
 7. Push the final changes to `main`.

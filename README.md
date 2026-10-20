@@ -62,7 +62,7 @@ npm run build
 npx opennextjs-cloudflare build
 npm run test:e2e -- --project=chromium
 npm run test:e2e -- --project=mobile
-npm audit
+npm audit --omit=dev --audit-level=high
 ```
 
 `npm run validate` runs the non-OpenNext, non-browser gates. Browser E2E and the

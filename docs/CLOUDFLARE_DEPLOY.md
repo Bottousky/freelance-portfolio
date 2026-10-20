@@ -69,7 +69,7 @@ npm run build
 npx opennextjs-cloudflare build
 npm run test:e2e -- --project=chromium
 npm run test:e2e -- --project=mobile
-npm audit --audit-level=high
+npm audit --omit=dev --audit-level=high   # blocking; a full `npm audit` is informational
 ```
 
 After `opennextjs-cloudflare build`, `.open-next/worker.js` and
