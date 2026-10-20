@@ -1,197 +1,202 @@
-export function buildWhatsappUrl(number: string): string | null {
-  const normalized = number.replace(/[\s+()-]/g, "");
-  if (!/^\d{8,15}$/.test(normalized)) {
+export function buildYoutubeUrl(url: string): string | null {
+  const trimmed = url.trim();
+  if (!trimmed) {
     return null;
   }
-  return `https://wa.me/${normalized}`;
+  let parsed: URL;
+  try {
+    parsed = new URL(trimmed);
+  } catch {
+    return null;
+  }
+  const host = parsed.hostname.replace(/^(www\.|m\.)/, "");
+  if (parsed.protocol !== "https:" || (host !== "youtube.com" && host !== "youtu.be")) {
+    return null;
+  }
+  return parsed.toString();
 }
 
 export const contact = {
-  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL ?? "manuelgbotto@gmail.com",
-  // WhatsApp number must be set via NEXT_PUBLIC_WHATSAPP_NUMBER in the host.
-  // Expected format: "54911XXXXXXXX" (country code + number, digits only, no "+", spaces or dashes).
-  // When unset or invalid, whatsappUrl is null and the site hides the WhatsApp CTA instead of
-  // linking to a fake number.
-  whatsappUrl: buildWhatsappUrl(process.env.NEXT_PUBLIC_WHATSAPP_NUMBER ?? ""),
-  inquirySubject: "Project inquiry",
-  inquiryBody: [
-    "Hi Manuel,",
-    "",
-    "1. Problem:",
-    "2. Current stack / site:",
-    "3. Desired result:",
-    "4. Urgency:",
-    "5. Approximate budget:",
-    "",
-    "Thanks!",
-  ].join("\n"),
+  // Public contact email, set via NEXT_PUBLIC_CONTACT_EMAIL in the host (target: hola@manuelbotto.com).
+  // The fallback stays on a mailbox that already receives mail, so the CTA never points to an
+  // address whose email routing is not live yet.
+  email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "manuelgbotto@gmail.com",
+  githubUrl: "https://github.com/Bottousky",
+  // Personal YouTube channel (videos / devlog), set via NEXT_PUBLIC_YOUTUBE_URL in the host.
+  // Expected format: an https://youtube.com/... or https://youtu.be/... URL.
+  // When unset or invalid, youtubeUrl is null and the site hides the Videos section instead of
+  // linking to a channel that does not exist yet.
+  youtubeUrl: buildYoutubeUrl(process.env.NEXT_PUBLIC_YOUTUBE_URL ?? ""),
 } as const;
 
-export const heroTags = [
-  "APIs",
-  "Microservices",
-  "Event-Driven Systems",
-  "SQL/NoSQL",
-  "Observability",
-  "Cloud",
+export const profile = {
+  name: "Manuel Botto",
+  greeting: "Hola, soy",
+  lead: "Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana.",
+  // Rotating line in the hero; the full facts are stated in `lead`.
+  roles: ["Escribo software.", "Construyo Juntopia.", "Diseño Proyecto Roxana.", "Enseño y divulgo.", "Juego al futsal."],
+  facts: ["Argentina", "Software Engineer", "Técnico Electrónico", "Docente"],
+  // The thread that ties the whole site together.
+  manifesto: {
+    lead: "Me interesa entender cómo funcionan las cosas, construir otras nuevas y mejorar continuamente lo que hago.",
+    tail: "Ya sea desarrollando software, creando experiencias educativas o jugando al futsal.",
+  },
+} as const;
+
+export const marquee = {
+  craft: ["Full stack", "Go", "TypeScript", "React", "React Native", "Cloudflare Workers", "Phaser", "Three.js", "SQL / NoSQL"],
+  mine: ["Juntopia", "Proyecto Roxana", "A la distancia", "Juego de Hormigas", "EventFlow", "Futsal", "Docencia", "Devlogs"],
+} as const;
+
+export type Project = {
+  slug: string;
+  status: string;
+  kind: string;
+  title: string;
+  summary: string;
+  note: string;
+  tags: readonly string[];
+  href: string | null;
+  linkLabel: string;
+};
+
+export const projects: readonly Project[] = [
+  {
+    slug: "juntopia",
+    status: "Lanzamiento: diciembre 2026",
+    kind: "Juego de cartas para juntadas",
+    title: "Juntopia",
+    summary:
+      "Un mazo compartido para juntadas: cada persona juega desde su celular, en la misma mesa, sin repartir cartas de papel.",
+    note: "Próximamente, «A la distancia»: juegos de mesa largos para seguir jugando aunque estemos lejos, empezando por Atlas.",
+    tags: ["React Native", "Expo", "Cloudflare Workers", "WebSocket"],
+    href: "https://juntopia.com",
+    linkLabel: "juntopia.com",
+  },
+  {
+    slug: "proyecto-roxana",
+    status: "En desarrollo",
+    kind: "Universo educativo",
+    title: "Proyecto Roxana",
+    summary:
+      "Un universo interactivo de aprendizaje que convierte matemática, física, electrónica y programación en experiencias jugables, para chicos y chicas de 12 a 18 años. Es mi proyecto más ambicioso.",
+    note: "Nombre de trabajo: el nombre público se anuncia más adelante.",
+    tags: ["TypeScript", "Phaser", "Three.js"],
+    href: "https://github.com/Bottousky/proyecto-roxana",
+    linkLabel: "Ver repositorio",
+  },
+  {
+    slug: "juego-de-hormigas",
+    status: "En diseño",
+    kind: "Aventura 3D",
+    title: "Juego de Hormigas",
+    summary:
+      "Una hormiga queda lejos de su colonia y tiene que volver a tiempo. A su escala, los lugares de todos los días se vuelven continentes y océanos.",
+    note: "Etapa temprana: diseño del juego y primeras pruebas.",
+    tags: ["3D", "Diseño de juego"],
+    href: "https://github.com/Bottousky/juego-de-hormigas",
+    linkLabel: "Ver repositorio",
+  },
+  {
+    slug: "eventflow",
+    status: "Código abierto",
+    kind: "Backend en Go",
+    title: "EventFlow",
+    summary:
+      "Un orquestador de notificaciones orientado a eventos, hecho para mostrar en público cómo trabajo el backend sin compartir código de ningún empleador.",
+    note: "Procesamiento ordenado, idempotencia, reintentos, cola de mensajes fallidos, métricas y tests.",
+    tags: ["Go", "Eventos", "SQL"],
+    href: "https://github.com/Bottousky/eventflow",
+    linkLabel: "Ver repositorio",
+  },
+];
+
+export const passions = [
+  {
+    slug: "videojuegos",
+    title: "Hacer videojuegos",
+    body: "De juegos de cartas para jugar en la mesa a aventuras educativas y en 3D: diseño las reglas y programo lo que las hace funcionar.",
+    related: ["Juntopia", "Proyecto Roxana", "Juego de Hormigas"],
+  },
+  {
+    slug: "juegos-de-mesa",
+    title: "Juegos de mesa y cartas",
+    body: "De las sobremesas con cartas nació Juntopia; de las ganas de seguir jugando con quien vive lejos, «A la distancia» y Atlas.",
+    related: ["Juntopia"],
+  },
+  {
+    slug: "ensenar",
+    title: "Enseñar y divulgar",
+    body: "Soy docente y lo voy a ser siempre. Di clases en una escuela técnica y hoy sigo enseñando con Proyecto Roxana y, pronto, con videos sobre cómo construyo lo que hago.",
+    related: ["Proyecto Roxana"],
+  },
 ] as const;
 
-export const experience = [
+export const futsal = {
+  sport: "Futsal",
+  since: "Desde chico",
+  title: { lead: "La disciplina también se", em: "entrena." },
+  body: "Juego al fútbol desde chico y nunca dejé: hoy sigo jugando al futsal. La cancha me enseñó cosas que uso todos los días fuera de ella.",
+  lessons: [
+    "Entrenar aunque no haya partido.",
+    "Jugar el rol que el equipo necesite.",
+    "Decidir rápido, bajo presión.",
+  ],
+} as const;
+
+export const work = [
   {
     role: "Software Engineer",
-    company: "Mercado Libre",
-    period: "Nov 2023 — Present",
+    place: "Mercado Libre",
+    period: "Nov 2023 — hoy",
     current: true,
     summary:
-      "Building and owning production backend services for customer-experience systems, primarily in Go. Working with microservices, APIs, event-driven architectures, SQL/NoSQL storage, distributed queues, observability and high-throughput production environments.",
-    bullets: [
-      "Own backend services handling high-volume event-driven workflows.",
-      "Design APIs and microservices in Go.",
-      "Participate in architecture decisions and RFCs.",
-      "Operate production systems through monitoring and on-call.",
-      "Maintain high automated test coverage.",
-      "Review code and mentor engineers transitioning into backend development.",
-    ],
-    tags: ["Go", "Microservices", "REST APIs", "Event-Driven", "SQL/NoSQL", "Observability"],
+      "Entré como desarrollador Jr y soy Semi Senior desde febrero de 2026. Trabajo full stack en sistemas de experiencia de cliente: del backend en Go —microservicios, APIs, arquitecturas orientadas a eventos y observabilidad— al frontend.",
   },
   {
-    role: "Software Developer",
-    company: "Telectrónica Peajes S.A.",
+    role: "Desarrollador de software",
+    place: "Telectrónica Peajes S.A.",
     period: "2022 — 2023",
     current: false,
-    summary: "Desktop software in C++ and C# for toll infrastructure systems.",
-    bullets: [] as string[],
-    tags: ["C++", "C#", "Desktop software", "Toll infrastructure"],
+    summary: "Software de escritorio en C++ y C# para sistemas de peaje.",
   },
   {
-    role: "Technical School Teacher",
-    company: "",
+    role: "Docente",
+    place: "Escuela técnica",
     period: "2020 — 2023",
     current: false,
-    summary:
-      "Teaching and mentoring — the communication practice behind how I document, review code and onboard engineers today.",
-    bullets: [] as string[],
-    tags: [] as string[],
+    summary: "Programación, electrónica, matemática y física.",
   },
 ] as const;
 
-export const capabilityGroups = [
+export const studies = [
   {
-    title: "Core backend",
-    items: [
-      "Go",
-      "Microservices",
-      "REST APIs",
-      "Distributed Systems",
-      "Event-Driven Architecture",
-      "SQL / NoSQL",
-      "Key-Value Stores",
-      "Observability",
-      "Unit Testing",
-      "AWS / GCP",
-      "Git",
-      "System Design",
-    ],
+    title: "Técnico Electrónico",
+    place: "Escuela Técnica Otto Krause",
+    detail: "Título secundario técnico: la base de todo lo que vino después.",
   },
   {
-    title: "Product & experimental",
-    items: [
-      "TypeScript",
-      "React",
-      "Next.js",
-      "C / C++",
-      "C#",
-      "AI-assisted engineering",
-      "Three.js",
-      "Phaser",
-    ],
+    title: "CBC de Ingeniería",
+    place: "Universidad de Buenos Aires",
+    detail: "Aprobado, con recorrido en Ingeniería Informática.",
+  },
+  {
+    title: "Autodidacta",
+    place: "Siempre",
+    detail: "Todo lo demás lo aprendí con cursos, documentación y proyectos propios.",
   },
 ] as const;
 
-export const services = [
-  {
-    slug: "backend-api",
-    title: "Backend & API Sprint",
-    price: "from USD 1,500",
-    promise: "A production-minded backend slice — API, data model, tests and observability — designed and shipped.",
-    proof: "Go or Node/TypeScript services, REST design, SQL/NoSQL modeling, automated tests, structured logging and a deployment-ready build.",
-  },
-  {
-    slug: "ai-automation",
-    title: "AI Automation Sprint",
-    price: "from USD 1,200",
-    promise: "Remove repetitive manual work with a focused AI-enabled workflow.",
-    proof: "API integration, structured outputs, human review points, logging, retries and measurable acceptance checks.",
-  },
-  {
-    slug: "saas-mvp",
-    title: "AI / SaaS MVP",
-    price: "from USD 2,500",
-    promise: "Go from product idea to a testable web application without building an oversized v1.",
-    proof: "React/TypeScript product UI, backend/API integration, auth/data foundations and a deployment-ready build.",
-  },
-  {
-    slug: "conversion-web",
-    title: "Conversion Web Sprint",
-    price: "from USD 650",
-    promise: "A fast, focused landing page built to turn traffic into qualified conversations.",
-    proof: "Responsive UX, analytics-ready structure, forms, WhatsApp/email conversion paths and technical SEO basics.",
-  },
-] as const;
-
-export type CaseStudyGroup = "backend" | "experimental" | "product";
-
-export const caseStudies = [
-  {
-    label: "DEMONSTRATION PROJECT",
-    group: "backend" as CaseStudyGroup,
-    title: "EventFlow — Notification Orchestrator",
-    subtitle: "Event-driven backend system in Go",
-    description:
-      "A small public system: REST API, append-only event stream and a notification orchestrator fanning out to email, push and in-app senders — with ordered processing, idempotency, retries, dead-lettering, SQL storage, a metrics endpoint and unit tests.",
-    outcome:
-      "Built to demonstrate publicly the same backend engineering concepts I work with professionally, without sharing employer code.",
-    href: "/demos/eventflow",
-  },
-  {
-    label: "REAL PROJECT",
-    group: "experimental" as CaseStudyGroup,
-    title: "Proyecto Roxana",
-    subtitle: "Educational web game ecosystem",
-    description:
-      "A multi-world browser experience combining TypeScript, Three.js, Babylon.js and Phaser experiments, with an agent-oriented production workflow and deterministic gameplay QA.",
-    outcome:
-      "Demonstrates architecture, interactive web graphics, technical documentation, iterative engine evaluation and browser QA beyond a standard CRUD portfolio.",
-    href: "https://github.com/Bottousky/proyecto-roxana",
-  },
-  {
-    label: "DEMONSTRATION PROJECT",
-    group: "product" as CaseStudyGroup,
-    title: "Lead Qualification Engine",
-    subtitle: "Construction / real-estate sales funnel",
-    description:
-      "A portfolio demo showing how a high-ticket business can capture project data, qualify intent and route a useful lead instead of collecting a generic contact form.",
-    outcome: "Built to demonstrate conversion thinking, UX and automation for high-ticket service businesses.",
-    href: "/demos/lead-engine",
-  },
-  {
-    label: "DEMONSTRATION PROJECT",
-    group: "product" as CaseStudyGroup,
-    title: "AI Operations Desk",
-    subtitle: "Human-in-the-loop automation",
-    description:
-      "A transparent workflow demo: intake, structured AI processing, confidence, review and final action with errors and retries visible.",
-    outcome: "Shows that AI integration is treated as software engineering, not a chatbot pasted onto a website.",
-    href: "/demos/ai-ops",
-  },
-  {
-    label: "DEMONSTRATION PROJECT",
-    group: "product" as CaseStudyGroup,
-    title: "SaaS Validation Sprint",
-    subtitle: "Product-minded MVP surface",
-    description:
-      "A compact SaaS dashboard demo focused on the first useful user journey, measurable states and tested interaction patterns.",
-    outcome: "Demonstrates the kind of scoped MVP that can be delivered rapidly for founders and small teams.",
-    href: "/demos/saas-sprint",
-  },
+export const tools = [
+  "Go",
+  "TypeScript",
+  "React",
+  "React Native",
+  "Next.js",
+  "Cloudflare Workers",
+  "SQL / NoSQL",
+  "Phaser",
+  "Three.js",
+  "C / C++",
+  "C#",
 ] as const;

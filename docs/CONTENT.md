@@ -1,91 +1,93 @@
-# Content Guide
+# Content — facts the site may use
 
-## Hero
+This file is the only source of facts for the site. Copy is written in Spanish. The
+rules below are in English. If a fact is not listed here, the site must not publish it.
 
-Headline:
+## Positioning
 
-> Backend Software Engineer building reliable distributed systems in Go.
+> Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana.
 
-Support:
+The hero says only "Software Engineer". Backend, Go and other specifics belong further
+down (career, project tags), never in the hero line or hero chips.
 
-> I design, build and operate production backend services — APIs, microservices, event-driven workflows — and I ship the React/TypeScript product surfaces around them when the job needs it.
+Thread for the whole site (manifesto):
 
-Tag row (order matters, backend first):
+> Me interesa entender cómo funcionan las cosas, construir otras nuevas y mejorar
+> continuamente lo que hago. Ya sea desarrollando software, creando experiencias
+> educativas o jugando al futsal.
 
-> APIs · Microservices · Event-Driven Systems · SQL/NoSQL · Observability · Cloud
+## Trabajo (work)
 
-React / AI / interactive web appear after the backend message, never before it.
+- **Software Engineer, Mercado Libre** — noviembre 2023 – presente. Joined as
+  Software Developer Jr; Semi Senior since February 2026.
+  Full stack today: backend in Go (microservices, APIs, event-driven systems,
+  observability, on-call, code review and mentoring) and frontend work too. Frontend
+  stack details at Mercado Libre are not provided; do not add them.
+- About four years working in software/systems overall.
+- **Software Developer, Telectrónica Peajes S.A.** — 2022–2023.
+  Desktop software in C++ and C# for toll systems.
+- **Docente, escuela técnica secundaria** — 2020–2023.
+  Taught programming, electronics, mathematics and physics.
 
-## Tone
+Manuel is a teacher for life. Teaching is part of who he is, not a past job: never call
+him "ex docente", "former teacher" or similar. The 2020–2023 dates refer only to that
+school position.
 
-- concise;
-- technical but commercial;
-- confident without inflated claims;
-- specific nouns and verbs;
-- no “10x”, “revolutionary”, “world-class”, “guru”, “ninja”, “rockstar” or fake scarcity.
+## Estudios (studies)
 
-## Proof language
+- **Técnico Electrónico**, Escuela Técnica Otto Krause (technical secondary degree).
+  Year not provided; do not add it.
+- **CBC de Ingeniería**, Universidad de Buenos Aires — passed, with some progress in
+  Ingeniería Informática. Never present it as a completed engineering degree, and never
+  call Manuel "ingeniero".
+- Self-taught, plus courses, for everything else.
 
-Good:
+## Futsal
 
-- “Demonstrates architecture, browser graphics and deterministic QA.”
-- “Built as a demonstration project for a construction lead funnel.”
-- “Starting at USD 650; final quote depends on scope.”
-- “I can't share my employer's production code, so I built a small public system demonstrating the same engineering concepts I work with professionally.”
+- Has played football since childhood and still plays: today, futsal.
+- Keep private: the club he plays for and any titles or championships. Do not mention
+  them anywhere on the site.
+- Lessons he relates to work: training even without a match, playing whatever role the
+  team needs, deciding fast under pressure.
 
-Bad:
+## Pasiones (passions)
 
-- “Trusted by leading companies” without clients.
-- “Boost conversions by 300%” without data.
-- “AI expert” as the only proof.
+- Hacer videojuegos.
+- Juegos de mesa y juegos de cartas.
+- Enseñar y divulgar (enseñar y divulgar ciencia y tecnología).
 
-## Personal introduction
+## Proyectos (projects)
 
-Use a compact introduction, not a biography:
+- **Juntopia** — a shared Spanish-deck card game for get-togethers. Each player uses
+  their own phone. Modes: truco, brisca, generala, free deck (keep these in docs; the
+  site focuses on Juntopia itself rather than listing traditional games). Launches in stores on
+  1 Dec 2026. "A la distancia" with Atlas comes later. Link: `https://juntopia.com`.
+- **Proyecto Roxana** — Manuel's most ambitious project: an interactive learning universe
+  that turns mathematics, physics, electronics and programming into playable
+  experiences, for ages 12–18.
+  In development. Working title; its public name is not decided. Public repo:
+  `https://github.com/Bottousky/proyecto-roxana`.
+- **Juego de Hormigas** — a 3D expedition adventure. An ant is carried far from its
+  colony, and everyday human places become continents. Early design. Public repo:
+  `https://github.com/Bottousky/juego-de-hormigas`.
+- **EventFlow** — an event-driven notification backend in Go. Public reference
+  implementation. Repo: `https://github.com/Bottousky/eventflow`.
 
-> I’m Manuel Botto, a backend software engineer from Argentina. I build and operate production services in Go at Mercado Libre, and I take on focused freelance projects across backend systems, React/TypeScript products and interactive web experiences.
+## Contacto (contact)
 
-## Experience
+- Email: `hola@manuelbotto.com`, set through `NEXT_PUBLIC_CONTACT_EMAIL`. Until Email
+  Routing is live, the code falls back to the personal Gmail address.
+- GitHub: `https://github.com/Bottousky`.
+- YouTube: set through `NEXT_PUBLIC_YOUTUBE_URL`. Shown only when set.
 
-Employer names on this page are published with Manuel's explicit approval: Mercado Libre and Telectrónica Peajes S.A. Do not add internal details, team names, client names, metrics or any non-public information about employers. Everything written must stay at the conceptual level of the approved copy below.
+## Rules for using these facts
 
-### Software Engineer — Mercado Libre (Nov 2023 — Present)
-
-Approved summary:
-
-> Building and owning production backend services for customer-experience systems, primarily in Go. Working with microservices, APIs, event-driven architectures, SQL/NoSQL storage, distributed queues, observability and high-throughput production environments.
-
-Approved bullets:
-
-- Own backend services handling high-volume event-driven workflows.
-- Design APIs and microservices in Go.
-- Participate in architecture decisions and RFCs.
-- Operate production systems through monitoring and on-call.
-- Maintain high automated test coverage.
-- Review code and mentor engineers transitioning into backend development.
-
-### Software Developer — Telectrónica Peajes S.A. (2022 — 2023)
-
-Concept: C++ / C# desktop software for toll infrastructure. Shows engineering depth predates the current web stack.
-
-### Technical School Teacher (2020 — 2023)
-
-Low prominence. Supports communication and mentoring credibility. One line, no institution name.
-
-## Capabilities
-
-Primary group (always first):
-
-> Go · Microservices · REST APIs · Distributed Systems · Event-Driven Architecture · SQL / NoSQL · Key-Value Stores · Observability · Unit Testing · AWS / GCP · Git · System Design
-
-Secondary group:
-
-> TypeScript · React · Next.js · C/C++ · C# · AI-assisted engineering · Three.js · Phaser
-
-## Work architecture
-
-Three mental columns, in this order:
-
-1. **Production Backend** — EventFlow / Notification Orchestrator (public Go demonstration system) plus the Mercado Libre experience entry.
-2. **Product Engineering** — the three product demos (Lead Qualification Engine, AI Operations Desk, SaaS Validation Sprint).
-3. **Experimental / AI Engineering** — Proyecto Roxana (real project, wildcard: breadth, initiative, ability to build hard things outside work).
+- Use the dates and roles exactly as written above. Do not round, merge or extend them.
+- Do not add employers, titles, degrees, dates, metrics, awards, testimonials or
+  anecdotes that are not listed here.
+- Do not describe any project as running in production or as shipped unless this file
+  says so.
+- Do not mention any name for Proyecto Roxana other than its working title.
+- Keep private: salary, bonuses and finances; family details; housing plans; Roxana's
+  monetization goals; internal Mercado Libre metrics or systems. Growth aspirations
+  (Sr, tech lead) may appear only as a direction, never as a title.

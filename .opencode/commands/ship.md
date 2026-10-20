@@ -1,19 +1,18 @@
-description: Complete the freelance portfolio in one orchestrated build/review/repair run.
+description: Complete the personal site in one orchestrated build/review/repair run.
 agent: build
 ---
 
-You are the loop owner for this repository. Complete the commercial portfolio from the existing scaffold in one bounded execution.
+You are the loop owner for this repository. Complete the personal site (Spanish copy) from the existing scaffold in one bounded execution.
 
 Read these files first, in order:
 
 1. `AGENTS.md`
 2. `docs/PRODUCT_BRIEF.md`
 3. `docs/CONTENT.md`
-4. `docs/CASE_STUDIES.md`
-5. `docs/VALIDATION.md`
-6. `docs/CLOUDFLARE_DEPLOY.md`
-7. `docs/PUBLISH_CHECKLIST.md`
-8. current source/tests
+4. `docs/VALIDATION.md`
+5. `docs/CLOUDFLARE_DEPLOY.md`
+6. `docs/PUBLISH_CHECKLIST.md`
+7. current source/tests
 
 Private commercial material (prospects, marketplace profiles, outreach templates,
 sales playbook, revenue targets) lives in the sibling `../freelance-sales-ops/`
@@ -23,26 +22,24 @@ Then execute this workflow:
 
 ### Phase 1 — independent audits
 
-Delegate a read-only commercial audit to `@product-strategist`.
-Delegate copy improvement to `@copywriter` after reading the product audit.
+Delegate a read-only audit to `@product-strategist` against `docs/PRODUCT_BRIEF.md`.
+Delegate copy improvement to `@copywriter` after reading the audit.
 
 ### Phase 2 — implementation
 
 Delegate the visual/product implementation to `@frontend-builder` with the approved findings. Require:
 
-- polished homepage with the backend-first positioning;
-- clear productized services and starting prices;
-- an Experience section (current role + previous roles) without inventing employer detail;
-- a flagship backend demo at `/demos/eventflow` labeled `DEMONSTRATION PROJECT`,
-  distinguishing architecture description from executable evidence;
-- Proyecto Roxana real case;
-- three interactive deterministic product demos: lead qualification, AI operations, SaaS validation;
+- Spanish homepage (`<html lang="es">`) with the positioning line from `docs/PRODUCT_BRIEF.md`, verbatim;
+- sections Proyectos, Pasiones, Trayectoria (trabajo + estudios), Videos (rendered only when
+  `NEXT_PUBLIC_YOUTUBE_URL` is set) and Contacto (`mailto:`);
+- Proyecto Roxana under its working title linking to its public GitHub repository; Juntopia linking to `https://juntopia.com`;
+- only facts listed in `docs/CONTENT.md`;
+- no services, prices, freelance CTAs, WhatsApp or demo pages;
 - responsive/mobile behavior;
 - useful focus/accessibility states;
-- no fake proof;
+- light and dark color schemes both legible;
 - no paid API requirement;
-- no claim that the EventFlow architecture is "running" here — the live code lives in
-  the linked public repository.
+- no claim that a project is running or shipped unless `docs/CONTENT.md` says so.
 
 You remain responsible for integrating/fixing any conflicts between agent outputs.
 

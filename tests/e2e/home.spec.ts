@@ -1,46 +1,58 @@
 import { expect, test } from "@playwright/test";
 
-test("homepage communicates the backend offer and the contact path", async ({ page }) => {
+test("home introduces Manuel in Spanish", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("Backend Software Engineer");
-  await expect(page.getByRole("heading", { level: 1 })).toContainText("reliable distributed systems");
-  await expect(page.getByText("PRODUCTIZED SERVICES")).toBeVisible();
-  await expect(page.getByText("PROOF, NOT CLAIMS")).toBeVisible();
-  await expect(page.getByRole("link", { name: /start a project/i })).toBeVisible();
+  await expect(page.locator("html")).toHaveAttribute("lang", "es");
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Hola, soy\s+Manuel Botto/);
+  await expect(page.getByText(/Software Engineer en Mercado Libre/)).toBeVisible();
 });
 
-test("real and demo work are visibly distinguished", async ({ page }) => {
+test("home shows projects, passions and career sections", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByText("REAL PROJECT")).toBeVisible();
-  await expect(page.getByText("DEMONSTRATION PROJECT").first()).toBeVisible();
+  for (const id of ["proyectos", "pasiones", "futsal", "trayectoria", "contacto"]) {
+    await expect(page.locator(`#${id}`)).toBeVisible();
+  }
+  const trayectoria = page.locator("#trayectoria");
+  await expect(trayectoria.getByRole("heading", { name: "Técnico Electrónico" })).toBeVisible();
+  await expect(trayectoria.getByText("Programación, electrónica, matemática y física.")).toBeVisible();
 });
 
-test("homepage surfaces the experience section with the current employer", async ({ page }) => {
+test("projects link Juntopia to its site and Proyecto Roxana to its repository", async ({ page }) => {
   await page.goto("/");
-  const experience = page.locator("#experience");
-  await expect(experience).toBeVisible();
-  await expect(experience.getByRole("heading", { level: 3, name: /Mercado Libre/ })).toBeVisible();
-  await expect(experience.locator(".xpBadge").first()).toHaveText("CURRENT");
+  const projects = page.locator("#proyectos");
+  await expect(projects.getByRole("link", { name: /juntopia\.com/ })).toHaveAttribute("href", "https://juntopia.com");
+  await expect(projects.getByRole("heading", { level: 3, name: "Proyecto Roxana" })).toBeVisible();
+  const roxanaCard = projects.locator("article", { has: page.getByRole("heading", { name: "Proyecto Roxana" }) });
+  await expect(roxanaCard.getByRole("link", { name: /Ver repositorio/ })).toHaveAttribute("href", "https://github.com/Bottousky/proyecto-roxana");
 });
 
-test("work section groups case studies by reference / experimental / product", async ({ page }) => {
+test("contact is a plain email, with no services or prices", async ({ page }) => {
   await page.goto("/");
-  const work = page.locator("#work");
-  await expect(work).toBeVisible();
-  await expect(work.getByText("BACKEND REFERENCE IMPLEMENTATION")).toBeVisible();
-  await expect(work.getByText("EXPERIMENTAL / AI ENGINEERING")).toBeVisible();
-  await expect(work.getByText("PRODUCT ENGINEERING DEMOS")).toBeVisible();
-  await expect(work.getByRole("link", { name: /EventFlow/i })).toBeVisible();
-  await expect(work.getByRole("link", { name: /Proyecto Roxana/i })).toBeVisible();
+  const contact = page.locator("#contacto");
+  await expect(contact.getByRole("link", { name: /@/ })).toHaveAttribute("href", /^mailto:/);
+  await expect(page.locator("body")).not.toContainText(/USD|WhatsApp|freelance/i);
 });
 
-test("homepage does not anchor the backend offer at USD 650", async ({ page }) => {
+test("videos section stays hidden without a configured channel", async ({ page }) => {
   await page.goto("/");
-  // The hero must communicate scope / engagement model, not a hard price floor.
-  // The check is scoped to the hero section so that explicit per-service prices
-  // (e.g. the Conversion Web Sprint in the services grid) keep working.
-  const hero = page.locator("section.hero");
-  await expect(hero.getByText(/Available for focused backend engagements/i)).toBeVisible();
-  await expect(hero).not.toContainText("Sprints from");
-  await expect(hero).not.toContainText("USD 650");
+  await expect(page.locator("#videos")).toHaveCount(0);
+  await expect(page.getByRole("link", { name: "Videos" })).toHaveCount(0);
+});
+
+test("page does not overflow horizontally", async ({ page }) => {
+  await page.goto("/");
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+});
+
+test("hero circuit is decorative and animates without errors", async ({ page }) => {
+  const errors: string[] = [];
+  page.on("pageerror", (error) => errors.push(error.message));
+  await page.goto("/");
+  const canvas = page.locator("canvas.circuit");
+  await expect(canvas).toHaveAttribute("aria-hidden", "true");
+  await page.mouse.move(600, 400);
+  await page.mouse.click(600, 400);
+  await page.waitForTimeout(300);
+  expect(errors).toEqual([]);
 });

@@ -1,39 +1,46 @@
-# AGENTS.md — Commercial Portfolio Delivery Contract
+# AGENTS.md — Personal Site Delivery Contract
 
 ## Mission
 
-Turn this repository into a polished, credible freelance portfolio that helps Manuel win paid web/software work quickly while remaining technically honest.
+This repository is the personal hub of Manuel Botto, served at `manuelbotto.com`.
+The site is written in Spanish and shows his projects, his career and studies, his
+passions, and one way to reach him: email.
 
-The site must make this positioning obvious within the first viewport:
-
-> **Backend Software Engineer building reliable distributed systems in Go — focused software sprints that ship.**
+It is not a sales page. Do not present Manuel as a freelancer or service provider.
 
 ## Sources of truth, in order
 
 1. `docs/PRODUCT_BRIEF.md`
 2. `docs/CONTENT.md`
-3. `docs/CASE_STUDIES.md`
-4. `docs/VALIDATION.md`
-5. `docs/CLOUDFLARE_DEPLOY.md`
-6. Existing source code
+3. `docs/VALIDATION.md`
+4. `docs/CLOUDFLARE_DEPLOY.md`
+5. Existing source code
 
 If two sources disagree, the higher item wins. Do not silently invent a compromise.
 
 ## Hard constraints
 
-- Do not invent clients, employment history, revenue, testimonials, awards or production metrics.
-- Keep `REAL PROJECT` and `DEMONSTRATION PROJECT` visually explicit.
-- Keep the site fast and useful on desktop and mobile.
-- The primary CTA must work without a backend. Email is an acceptable baseline.
-- Do not require paid external APIs to render the portfolio.
-- Do not add a database, auth layer, CMS or heavy animation library unless the product strategist demonstrates a concrete portfolio benefit.
-- Do not make the site look like a generic AI-generated template. Prefer deliberate typography, hierarchy, whitespace, responsive states and one coherent visual system.
-- Maintain strict TypeScript.
-- No `any` unless justified in a nearby comment.
+- Never invent jobs, degrees, dates, metrics, testimonials, clients, awards or anecdotes.
+  Use only the facts listed in `docs/CONTENT.md`.
+- No services, no prices, no freelance CTAs, no WhatsApp, no commercial demos.
+- Proyecto Roxana is shown under its working title and links to its public repository,
+  `https://github.com/Bottousky/proyecto-roxana`. Its public name is not decided. Never
+  mention "Ohmdal".
+- Juntopia links to `https://juntopia.com`.
+- Maintain strict TypeScript. No `any` unless justified in a nearby comment.
 - Do not disable lint/type/test rules to make validation pass.
 - Do not delete failing tests as a repair strategy.
-- Keep dependencies small.
-- Do not claim an architecture is "running" or "shipped" when only a static description or a public reference repository is on display. Distinguish design/explanation from executable evidence.
+- Keep dependencies small. Do not add a database, auth layer, CMS or heavy animation
+  library. Do not require paid external APIs to render the site.
+- The site uses one dark theme regardless of the OS color scheme; core text and links must
+  keep WCAG AA contrast on it.
+- Motion (hero circuit canvas, marquee, reveals, card effects) is progressive enhancement:
+  content must render without JavaScript, and `prefers-reduced-motion` must stop it.
+  Keep it dependency-free (Canvas 2D + CSS); pause the canvas when it is off-screen.
+- Keep the site fast and useful on desktop and mobile. Prefer static/server-rendered
+  content and minimal client JavaScript.
+- Do not look like a generic AI-generated template. Prefer deliberate typography,
+  hierarchy, whitespace and one coherent visual system.
 
 ## Deployment contract
 
@@ -41,7 +48,7 @@ The production target is **Cloudflare Workers** via the `@opennextjs/cloudflare`
 
 - `next.config.ts` must remain a regular Next.js build (no `output: "export"`).
 - `wrangler.jsonc` declares the Worker entrypoint (`.open-next/worker.js`) and the static asset binding.
-- `open-next.config.ts` configures the OpenNext adapter (default config is acceptable for this portfolio).
+- `open-next.config.ts` configures the OpenNext adapter (default config is acceptable for this site).
 - `npm run build` followed by `opennextjs-cloudflare build` must produce `.open-next/worker.js`.
 - `npm run preview` boots a local Wrangler dev server against that bundle.
 - `npm run deploy` publishes the Worker to Cloudflare using Wrangler.
@@ -56,8 +63,6 @@ This repository is public-facing. All commercial intelligence lives in the sibli
 outreach templates, sales playbook, revenue targets).
 
 - Never commit `data/`, `profiles/`, `templates/` or any sales-ops material to this repo.
-- The WhatsApp CTA must be env-driven (`NEXT_PUBLIC_WHATSAPP_NUMBER`); when unset it must
-  hide instead of linking to a fake number.
 - `.gitignore` and `scripts/verify-structure.mjs` enforce the split. Do not weaken them.
 - The OpenNext/Workers build emits `.open-next/` and Wrangler emits `.wrangler/`. Both must
   stay gitignored; never commit generated bundle artifacts.
@@ -66,31 +71,30 @@ outreach templates, sales playbook, revenue targets).
 
 ## Agent workflow
 
-The primary `build` agent owns orchestration and final edits. Delegate in this order:
+The primary `build` agent owns orchestration and final edits. Delegate in this order, and
+only when a subagent reduces context pollution:
 
-1. `@product-strategist` — audit positioning, offer, CTA and proof hierarchy. Read-only recommendation.
-2. `@copywriter` — improve concise sales copy without fabricating proof.
-3. `@frontend-builder` — implement the approved UX/design and demo surfaces.
+1. `@product-strategist` — read-only audit of positioning, clarity and factual accuracy against `docs/PRODUCT_BRIEF.md`.
+2. `@copywriter` — improve Spanish copy for clarity without inventing facts.
+3. `@frontend-builder` — implement the approved UI and content.
 4. `@qa-engineer` — execute gates, reproduce failures, repair scoped defects when permitted.
 5. `@security-reviewer` — inspect dependency/config/client-side exposure risks. Read-only.
-6. `@final-reviewer` — compare implementation against acceptance criteria and issue PASS/REPAIR.
+6. `@final-reviewer` — compare implementation against the definition of done and issue PASS/REPAIR.
 
-Nested subagents are enabled to depth 2. Use them only when they reduce context pollution; do not create an open-ended agent loop.
+Do not create an open-ended agent loop.
 
 ## Definition of done
 
 All of the following are mandatory:
 
-- Homepage has one clear positioning statement, one primary CTA and visible starting prices.
-- Four service cards exist.
-- An "Experience" section surfaces the truthful professional background (current employer approved, prior roles, no internal details).
-- At least one real-project case study exists.
-- At least three demonstration projects exist and are labeled truthfully.
-- A flagship backend demo (EventFlow) exists and is labeled `DEMONSTRATION PROJECT`; the page distinguishes architecture description from executable evidence (the actual code lives in a separate public repository).
-- Proyecto Roxana links to the public GitHub repository.
-- Mobile viewport does not overflow horizontally.
+- `<html lang="es">`; all visible copy is in Spanish.
+- Homepage sections: **Proyectos**, **Pasiones**, **Fuera del código** (futsal), **Trayectoria** (trabajo + estudios),
+  optional **Videos** (rendered only when `NEXT_PUBLIC_YOUTUBE_URL` is set), and
+  **Contacto** (a `mailto:` link).
+- Every project, job, degree and passion shown is backed by `docs/CONTENT.md`.
+- Mobile viewport (390 × 844) does not overflow horizontally.
 - Keyboard focus remains visible.
-- No obvious WCAG contrast failure on core text/CTA surfaces.
+- Core text and links are legible on the dark theme, and reduced motion disables animation.
 - `npm run verify:structure` passes.
 - `npm run lint` passes.
 - `npm run typecheck` passes.
@@ -100,7 +104,6 @@ All of the following are mandatory:
 - `npm run test:e2e -- --project=chromium` passes.
 - `npm run test:e2e -- --project=mobile` passes.
 - No critical/high finding from `@security-reviewer` remains unresolved.
-- `@final-reviewer` returns `PASS`.
 
 ## Repair loop
 

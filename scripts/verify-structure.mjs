@@ -6,7 +6,6 @@ const required = [
   ".env.example",
   "docs/PRODUCT_BRIEF.md",
   "docs/CONTENT.md",
-  "docs/CASE_STUDIES.md",
   "docs/VALIDATION.md",
   "docs/CLOUDFLARE_DEPLOY.md",
   "docs/PUBLISH_CHECKLIST.md",
@@ -17,7 +16,6 @@ const required = [
   ".opencode/agents/qa-engineer.md",
   ".opencode/agents/security-reviewer.md",
   ".opencode/agents/final-reviewer.md",
-  "app/demos/eventflow/page.tsx",
   "open-next.config.ts",
   "wrangler.jsonc",
   "FINAL_REPORT.md",
@@ -71,52 +69,46 @@ for (const pattern of ['".open-next/**"', '".wrangler/**"']) {
 
 const home = readFileSync("app/page.tsx", "utf8");
 const homeMarkers = [
-  "Backend Software Engineer",
-  "reliable distributed systems",
-  "Tell me what you need",
-  "PRODUCTIZED SERVICES",
-  "PROOF, NOT CLAIMS",
-  "EXPERIENCE",
-  "BACKEND REFERENCE IMPLEMENTATION",
-  "PRODUCT ENGINEERING DEMOS",
+  'id="proyectos"',
+  'id="pasiones"',
+  'id="trayectoria"',
+  'id="contacto"',
+  "mailto:",
 ];
 for (const marker of homeMarkers) {
   if (!home.includes(marker)) {
-    console.error(`Homepage is missing commercial marker: ${marker}`);
+    console.error(`Homepage is missing personal-site marker: ${marker}`);
     process.exit(1);
   }
 }
-
-const eventflowPage = readFileSync("app/demos/eventflow/page.tsx", "utf8");
-const eventflowMarkers = [
-  "EventFlow",
-  "DEMONSTRATION PROJECT",
-  "github.com/Bottousky/eventflow",
-];
-for (const marker of eventflowMarkers) {
-  if (!eventflowPage.includes(marker)) {
-    console.error(`EventFlow demo page is missing marker: ${marker}`);
+for (const forbidden of ["WhatsApp", "USD", "Productized", "Start a project"]) {
+  if (home.includes(forbidden)) {
+    console.error(`Homepage must not sell freelance services (found: ${forbidden})`);
     process.exit(1);
   }
 }
 
 const content = readFileSync("lib/content.ts", "utf8");
 const contentChecks = [
-  ["WhatsApp URL helper", "buildWhatsappUrl"],
-  ["WhatsApp env var", "NEXT_PUBLIC_WHATSAPP_NUMBER"],
-  ["Experience export", "export const experience"],
-  ["Capability groups export", "export const capabilityGroups"],
-  ["Hero tags export", "export const heroTags"],
-  ["Backend case study (EventFlow)", "EventFlow — Notification Orchestrator"],
-  ["Real project case study (Roxana)", "Proyecto Roxana"],
-  ["Case study grouping", "CaseStudyGroup"],
-  ["Mercado Libre experience", "Mercado Libre"],
+  ["YouTube URL helper", "buildYoutubeUrl"],
+  ["YouTube env var", "NEXT_PUBLIC_YOUTUBE_URL"],
+  ["Contact email env var", "NEXT_PUBLIC_CONTACT_EMAIL"],
+  ["Projects export", "export const projects"],
+  ["Passions export", "export const passions"],
+  ["Work export", "export const work"],
+  ["Studies export", "export const studies"],
+  ["Juntopia project", "https://juntopia.com"],
+  ["Proyecto Roxana project", "Proyecto Roxana"],
 ];
 for (const [label, marker] of contentChecks) {
   if (!content.includes(marker)) {
     console.error(`lib/content.ts is missing ${label}: ${marker}`);
     process.exit(1);
   }
+}
+if (/ohmdal/i.test(content)) {
+  console.error("lib/content.ts must not reveal the unannounced public name of Proyecto Roxana");
+  process.exit(1);
 }
 
 const nextConfig = readFileSync("next.config.ts", "utf8");
@@ -141,4 +133,4 @@ for (const script of ["preview", "deploy"]) {
   }
 }
 
-console.log("Portfolio structure gate: PASS");
+console.log("Personal site structure gate: PASS");

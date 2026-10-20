@@ -1,106 +1,101 @@
 import { describe, expect, it } from "vitest";
-import {
-  buildWhatsappUrl,
-  capabilityGroups,
-  caseStudies,
-  contact,
-  experience,
-  heroTags,
-  services,
-} from "../../lib/content";
+import * as content from "../../lib/content";
+import { buildYoutubeUrl, contact, futsal, marquee, passions, profile, projects, studies, work } from "../../lib/content";
 
-describe("commercial content", () => {
-  it("publishes four productized services", () => {
-    expect(services).toHaveLength(4);
+describe("personal site content", () => {
+  it("introduces Manuel without selling freelance services", () => {
+    expect(`${profile.greeting} ${profile.name}`).toBe("Hola, soy Manuel Botto");
+    expect(profile.roles.length).toBeGreaterThanOrEqual(3);
+    expect(profile.lead).toMatch(/Mercado Libre/);
+    expect(Object.keys(content)).not.toContain("services");
+    expect(JSON.stringify(content)).not.toMatch(/USD|freelance|WhatsApp/i);
+    // Manuel is a teacher for life, never a former one.
+    expect(JSON.stringify(content)).not.toMatch(/ex[ -]?docente|fui docente/i);
   });
 
-  it("leads with the backend sprint, not the conversion sprint", () => {
-    expect(services[0]?.slug).toBe("backend-api");
-    expect(services[services.length - 1]?.slug).toBe("conversion-web");
+  it("leads the projects with Juntopia linking to its own site", () => {
+    expect(projects[0]?.slug).toBe("juntopia");
+    expect(projects[0]?.href).toBe("https://juntopia.com");
   });
 
-  it("clearly labels demonstration case studies", () => {
-    const demoCases = caseStudies.filter((item) => item.label === "DEMONSTRATION PROJECT");
-    expect(demoCases.length).toBeGreaterThanOrEqual(3);
+  it("keeps Proyecto Roxana under its working title, linked to its public repository", () => {
+    const roxana = projects.find((item) => item.slug === "proyecto-roxana");
+    expect(roxana?.title).toBe("Proyecto Roxana");
+    expect(roxana?.href).toBe("https://github.com/Bottousky/proyecto-roxana");
+    expect(JSON.stringify(content)).not.toMatch(/ohmdal/i);
   });
 
-  it("keeps at least one real-project proof point", () => {
-    expect(caseStudies.some((item) => item.label === "REAL PROJECT")).toBe(true);
-  });
-});
-
-describe("case study hierarchy", () => {
-  it("uses backend / experimental / product groups", () => {
-    const groups = new Set(caseStudies.map((item) => item.group));
-    expect(groups).toEqual(new Set(["backend", "experimental", "product"]));
-  });
-
-  it("flagships the backend case (EventFlow) as the only backend entry", () => {
-    const backend = caseStudies.filter((item) => item.group === "backend");
-    expect(backend).toHaveLength(1);
-    expect(backend[0]?.title).toContain("EventFlow");
-  });
-
-  it("keeps Proyecto Roxana as the experimental / real case", () => {
-    const real = caseStudies.find((item) => item.group === "experimental");
-    expect(real?.label).toBe("REAL PROJECT");
-    expect(real?.href).toBe("https://github.com/Bottousky/proyecto-roxana");
-  });
-
-  it("groups the three product demos under product", () => {
-    const products = caseStudies.filter((item) => item.group === "product");
-    expect(products).toHaveLength(3);
-    for (const item of products) {
-      expect(item.label).toBe("DEMONSTRATION PROJECT");
-    }
-  });
-});
-
-describe("experience and capability copy", () => {
-  it("lists Mercado Libre as the current role", () => {
-    const current = experience.find((entry) => entry.current);
-    expect(current?.company).toBe("Mercado Libre");
-    expect(current?.period).toMatch(/Present/);
-  });
-
-  it("does not expose the employer as a fabricated client", () => {
-    // The current role carries detail; previous roles keep it conceptual.
-    const current = experience.find((entry) => entry.current);
-    expect(current?.bullets.length).toBeGreaterThan(0);
-    for (const bullet of current?.bullets ?? []) {
-      expect(bullet).not.toMatch(/client|customer of|paid by/i);
+  it("only links projects to https URLs", () => {
+    for (const project of projects) {
+      if (project.href) {
+        expect(project.href).toMatch(/^https:\/\//);
+      }
     }
   });
 
-  it("keeps backend capability group first", () => {
-    expect(capabilityGroups[0]?.title).toBe("Core backend");
-    expect(capabilityGroups[0]?.items).toContain("Go");
+  it("shows the three passions Manuel chose", () => {
+    expect(passions.map((item) => item.title)).toEqual([
+      "Hacer videojuegos",
+      "Juegos de mesa y cartas",
+      "Enseñar y divulgar",
+    ]);
   });
 
-  it("leads the hero tags with backend concepts", () => {
-    expect(heroTags[0]).toBe("APIs");
-    expect(heroTags[heroTags.length - 1]).toBe("Cloud");
+  it("lists the electronics degree and the teaching role", () => {
+    expect(studies.map((item) => item.title)).toContain("Técnico Electrónico");
+    expect(studies.find((item) => item.title === "Técnico Electrónico")?.place).toBe("Escuela Técnica Otto Krause");
+    expect(work.some((entry) => entry.role === "Docente")).toBe(true);
+    expect(work.find((entry) => entry.current)?.place).toBe("Mercado Libre");
   });
 });
 
-describe("WhatsApp CTA configuration", () => {
-  it("builds a wa.me link from a valid international number", () => {
-    expect(buildWhatsappUrl("5491123456789")).toBe("https://wa.me/5491123456789");
+describe("contact configuration", () => {
+  it("always has an email to write to", () => {
+    expect(contact.email).toMatch(/^[^@\s]+@[^@\s]+\.[a-z]+$/);
+  });
+});
+
+describe("YouTube channel configuration", () => {
+  it("accepts https YouTube channel URLs", () => {
+    expect(buildYoutubeUrl("https://www.youtube.com/@manuelbotto")).toBe("https://www.youtube.com/@manuelbotto");
+    expect(buildYoutubeUrl("  https://youtube.com/@manuelbotto  ")).toBe("https://youtube.com/@manuelbotto");
   });
 
-  it("rejects an unset number instead of pointing to a fake contact", () => {
-    expect(buildWhatsappUrl("")).toBeNull();
+  it("rejects an unset URL instead of pointing to a channel that does not exist", () => {
+    expect(buildYoutubeUrl("")).toBeNull();
   });
 
-  it("rejects numbers with non-digit characters", () => {
-    expect(buildWhatsappUrl("54911-not-a-number")).toBeNull();
+  it("rejects non-YouTube hosts, plain http and malformed values", () => {
+    expect(buildYoutubeUrl("https://example.com/@manuelbotto")).toBeNull();
+    expect(buildYoutubeUrl("http://www.youtube.com/@manuelbotto")).toBeNull();
+    expect(buildYoutubeUrl("javascript:alert(1)")).toBeNull();
+    expect(buildYoutubeUrl("not a url")).toBeNull();
   });
 
-  it("normalizes common separators", () => {
-    expect(buildWhatsappUrl("+54 9 11 1234-56789")).toBe("https://wa.me/54911123456789");
+  it("hides the Videos section when the environment has no channel", () => {
+    expect(contact.youtubeUrl).toBeNull();
+  });
+});
+
+describe("hero focus and Manuel's own story", () => {
+  it("keeps the hero generic: Software Engineer, without stack details", () => {
+    expect(profile.lead).toMatch(/^Software Engineer en Mercado Libre/);
+    expect(profile.facts).toContain("Software Engineer");
+    expect(JSON.stringify([profile.lead, profile.facts, profile.roles])).not.toMatch(/\bGo\b|backend/i);
   });
 
-  it("does not expose a WhatsApp URL when the environment has no number", () => {
-    expect(contact.whatsappUrl).toBeNull();
+  it("puts his own projects in the carousel instead of traditional games", () => {
+    expect(marquee.mine).toContain("Juntopia");
+    expect(JSON.stringify(marquee)).not.toMatch(/Truco|Brisca|Generala/);
+  });
+
+  it("never presents the UBA studies as a finished engineering degree", () => {
+    expect(JSON.stringify(content)).not.toMatch(/ingenier[oa] (en|informátic)|t[ií]tulo de ingenier/i);
+    expect(studies.find((item) => item.place === "Universidad de Buenos Aires")?.title).toBe("CBC de Ingeniería");
+  });
+
+  it("tells the futsal story without exposing the club or titles", () => {
+    expect(futsal.since).toBe("Desde chico");
+    expect(JSON.stringify(content)).not.toMatch(/Racing|campe[oó]n/i);
   });
 });
