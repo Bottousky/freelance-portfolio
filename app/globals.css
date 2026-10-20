@@ -95,7 +95,6 @@ em { font-style: normal; background: var(--grad); -webkit-background-clip: text;
 @keyframes shine { from { background-position: 100% 0; } to { background-position: -160% 0; } }
 
 .rotator { display: flex; flex-wrap: wrap; align-items: baseline; gap: .35em; margin-top: 28px; font-family: var(--font-display), sans-serif; font-weight: 500; font-size: clamp(20px, 2.6vw, 34px); letter-spacing: -.02em; }
-.rotPrefix { color: var(--muted); }
 .rotWindow { display: inline-block; height: 1.3em; overflow: hidden; vertical-align: bottom; }
 .rotTrack { display: flex; flex-direction: column; animation: rotate 14s cubic-bezier(.7, 0, .2, 1) infinite; }
 .rotTrack span { height: 1.3em; line-height: 1.3em; background: var(--grad); -webkit-background-clip: text; background-clip: text; color: transparent; white-space: nowrap; }

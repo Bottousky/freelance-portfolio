@@ -195,8 +195,7 @@ export default function Home() {
               <span className="name">{profile.name}</span>
             </h1>
             <p className="rotator">
-              <span className="srOnly">Yo {profile.roles.join(" ")}</span>
-              <span aria-hidden="true" className="rotPrefix">Yo</span>
+              <span className="srOnly">{profile.roles.join(" ")}</span>
               <span aria-hidden="true" className="rotWindow">
                 <span className="rotTrack">
                   {[...profile.roles, profile.roles[0]].map((role, i) => <span key={`${role}-${i}`}>{role}</span>)}

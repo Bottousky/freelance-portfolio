@@ -33,8 +33,8 @@ export const profile = {
   name: "Manuel Botto",
   greeting: "Hola, soy",
   lead: "Software Engineer en Mercado Libre, técnico electrónico y docente. Estoy construyendo Juntopia y Proyecto Roxana.",
-  // Rotating endings for "Yo …" in the hero; the full facts are stated in `lead`.
-  roles: ["escribo software.", "construyo Juntopia.", "diseño Proyecto Roxana.", "enseño y divulgo.", "juego al futsal."],
+  // Rotating line in the hero; the full facts are stated in `lead`.
+  roles: ["Escribo software.", "Construyo Juntopia.", "Diseño Proyecto Roxana.", "Enseño y divulgo.", "Juego al futsal."],
   facts: ["Argentina", "Software Engineer", "Técnico Electrónico", "Docente"],
   // The thread that ties the whole site together.
   manifesto: {
