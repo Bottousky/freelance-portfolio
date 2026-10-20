@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("home introduces Manuel in Spanish", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("lang", "es");
-  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Hola, soy\s*Manuel Botto/);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText(/Hola, soy\s+Manuel Botto/);
   await expect(page.getByText(/Desarrollador backend en Mercado Libre/)).toBeVisible();
 });
 

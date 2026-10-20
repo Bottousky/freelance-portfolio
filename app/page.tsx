@@ -163,7 +163,7 @@ export default function Home() {
           <div className="wrap heroInner">
             <p className="mono heroTag"><span className="liveDot" aria-hidden="true" /> {profile.facts.join(" · ")}</p>
             <h1>
-              <span className="hi">{profile.greeting}</span>
+              <span className="hi">{profile.greeting}</span>{" "}
               <span className="name">{profile.name}</span>
             </h1>
             <p className="rotator">
