@@ -64,7 +64,8 @@ school position.
 - **Proyecto Roxana** — Manuel's most ambitious project: an interactive learning universe
   that turns mathematics, physics, electronics and programming into playable
   experiences, for ages 12–18.
-  In development. Working title. **No public link.** Its public name is not decided.
+  In development. Working title; its public name is not decided. Public repo:
+  `https://github.com/Bottousky/proyecto-roxana`.
 - **Juego de Hormigas** — a 3D expedition adventure. An ant is carried far from its
   colony, and everyday human places become continents. Early design. Public repo:
   `https://github.com/Bottousky/juego-de-hormigas`.

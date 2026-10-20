@@ -64,7 +64,7 @@ Headings are in Spanish.
 ## Content boundaries
 
 - Every fact comes from `docs/CONTENT.md`. A fact that is not there is not published.
-- Proyecto Roxana is shown under its working title with no public link.
+- Proyecto Roxana is shown under its working title and links to its public repository.
 - Juntopia links to `https://juntopia.com`.
 - Juego de Hormigas and EventFlow link to their public GitHub repositories.
 

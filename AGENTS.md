@@ -23,8 +23,9 @@ If two sources disagree, the higher item wins. Do not silently invent a compromi
 - Never invent jobs, degrees, dates, metrics, testimonials, clients, awards or anecdotes.
   Use only the facts listed in `docs/CONTENT.md`.
 - No services, no prices, no freelance CTAs, no WhatsApp, no commercial demos.
-- Proyecto Roxana is shown under its working title with **no public link**. Its public
-  name is not decided. Never mention "Ohmdal".
+- Proyecto Roxana is shown under its working title and links to its public repository,
+  `https://github.com/Bottousky/proyecto-roxana`. Its public name is not decided. Never
+  mention "Ohmdal".
 - Juntopia links to `https://juntopia.com`.
 - Maintain strict TypeScript. No `any` unless justified in a nearby comment.
 - Do not disable lint/type/test rules to make validation pass.

@@ -17,13 +17,13 @@ test("home shows projects, passions and career sections", async ({ page }) => {
   await expect(trayectoria.getByText("Programación, electrónica, matemática y física.")).toBeVisible();
 });
 
-test("projects link Juntopia but not Proyecto Roxana", async ({ page }) => {
+test("projects link Juntopia to its site and Proyecto Roxana to its repository", async ({ page }) => {
   await page.goto("/");
   const projects = page.locator("#proyectos");
   await expect(projects.getByRole("link", { name: /juntopia\.com/ })).toHaveAttribute("href", "https://juntopia.com");
   await expect(projects.getByRole("heading", { level: 3, name: "Proyecto Roxana" })).toBeVisible();
   const roxanaCard = projects.locator("article", { has: page.getByRole("heading", { name: "Proyecto Roxana" }) });
-  await expect(roxanaCard.getByRole("link")).toHaveCount(0);
+  await expect(roxanaCard.getByRole("link", { name: /Ver repositorio/ })).toHaveAttribute("href", "https://github.com/Bottousky/proyecto-roxana");
 });
 
 test("contact is a plain email, with no services or prices", async ({ page }) => {

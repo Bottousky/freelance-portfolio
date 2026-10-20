@@ -32,7 +32,7 @@ Delegate the visual/product implementation to `@frontend-builder` with the appro
 - Spanish homepage (`<html lang="es">`) with the positioning line from `docs/PRODUCT_BRIEF.md`, verbatim;
 - sections Proyectos, Pasiones, Trayectoria (trabajo + estudios), Videos (rendered only when
   `NEXT_PUBLIC_YOUTUBE_URL` is set) and Contacto (`mailto:`);
-- Proyecto Roxana under its working title with no public link; Juntopia linking to `https://juntopia.com`;
+- Proyecto Roxana under its working title linking to its public GitHub repository; Juntopia linking to `https://juntopia.com`;
 - only facts listed in `docs/CONTENT.md`;
 - no services, prices, freelance CTAs, WhatsApp or demo pages;
 - responsive/mobile behavior;

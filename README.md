@@ -12,8 +12,9 @@ teacher. He is building Juntopia and Proyecto Roxana, and plays futsal for Racin
 - **Proyectos** — Manuel's own projects, each with its own audience and channels:
   - [Juntopia](https://juntopia.com) — a shared Spanish-deck card game for get-togethers,
     with truco, brisca, generala and a free deck. Launches in stores on 1 Dec 2026.
-  - Proyecto Roxana — working title of an educational adventure about electricity for
-    ages 12–18. In development. No public link yet.
+  - Proyecto Roxana — working title of an interactive learning universe (mathematics,
+    physics, electronics and programming) for ages 12–18. In development:
+    [github.com/Bottousky/proyecto-roxana](https://github.com/Bottousky/proyecto-roxana).
   - Juego de Hormigas — a 3D expedition adventure in early design:
     [github.com/Bottousky/juego-de-hormigas](https://github.com/Bottousky/juego-de-hormigas).
   - EventFlow — an event-driven notification backend in Go, published as a public

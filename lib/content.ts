@@ -82,8 +82,8 @@ export const projects: readonly Project[] = [
       "Un universo interactivo de aprendizaje que convierte matemática, física, electrónica y programación en experiencias jugables, para chicos y chicas de 12 a 18 años. Es mi proyecto más ambicioso.",
     note: "Nombre de trabajo: el nombre público se anuncia más adelante.",
     tags: ["TypeScript", "Phaser", "Three.js"],
-    href: null,
-    linkLabel: "",
+    href: "https://github.com/Bottousky/proyecto-roxana",
+    linkLabel: "Ver repositorio",
   },
   {
     slug: "juego-de-hormigas",

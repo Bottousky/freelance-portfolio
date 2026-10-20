@@ -18,10 +18,10 @@ describe("personal site content", () => {
     expect(projects[0]?.href).toBe("https://juntopia.com");
   });
 
-  it("keeps Proyecto Roxana under its working title without a public link", () => {
+  it("keeps Proyecto Roxana under its working title, linked to its public repository", () => {
     const roxana = projects.find((item) => item.slug === "proyecto-roxana");
     expect(roxana?.title).toBe("Proyecto Roxana");
-    expect(roxana?.href).toBeNull();
+    expect(roxana?.href).toBe("https://github.com/Bottousky/proyecto-roxana");
     expect(JSON.stringify(content)).not.toMatch(/ohmdal/i);
   });
 
