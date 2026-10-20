@@ -39,12 +39,12 @@ export const profile = {
   // The thread that ties the whole site together.
   manifesto: {
     lead: "Me interesa entender cómo funcionan las cosas, construir otras nuevas y mejorar continuamente lo que hago.",
-    tail: "Ya sea desarrollando software, creando experiencias educativas o compitiendo en una cancha.",
+    tail: "Ya sea desarrollando software, creando experiencias educativas o jugando al futsal.",
   },
 } as const;
 
 export const marquee = {
-  craft: ["Go", "TypeScript", "React Native", "Cloudflare Workers", "Phaser", "Three.js", "C / C++", "SQL / NoSQL"],
+  craft: ["Full stack", "Go", "TypeScript", "React", "React Native", "Cloudflare Workers", "Phaser", "Three.js", "SQL / NoSQL"],
   mine: ["Juntopia", "Proyecto Roxana", "A la distancia", "Juego de Hormigas", "EventFlow", "Futsal", "Docencia", "Devlogs"],
 } as const;
 
@@ -76,7 +76,7 @@ export const projects: readonly Project[] = [
   {
     slug: "proyecto-roxana",
     status: "En desarrollo",
-    kind: "Videojuego educativo",
+    kind: "Universo educativo",
     title: "Proyecto Roxana",
     summary:
       "Un universo interactivo de aprendizaje que convierte matemática, física, electrónica y programación en experiencias jugables, para chicos y chicas de 12 a 18 años. Es mi proyecto más ambicioso.",
@@ -134,10 +134,9 @@ export const passions = [
 
 export const futsal = {
   sport: "Futsal",
-  club: "Racing Club",
+  since: "Desde chico",
   title: { lead: "La disciplina también se", em: "entrena." },
-  body: "Juego al fútbol desde chico, en infantiles y juveniles. Volví a competir de grande, en futsal, y hoy juego en Racing Club: en 2026 jugamos la final y salimos campeones.",
-  badge: "Campeón 2026",
+  body: "Juego al fútbol desde chico y nunca dejé: hoy sigo jugando al futsal. La cancha me enseñó cosas que uso todos los días fuera de ella.",
   lessons: [
     "Entrenar aunque no haya partido.",
     "Jugar el rol que el equipo necesite.",
@@ -152,7 +151,7 @@ export const work = [
     period: "Nov 2023 — hoy",
     current: true,
     summary:
-      "Entré como desarrollador Jr y soy Semi Senior desde febrero de 2026. Construyo y opero servicios backend en Go para sistemas de experiencia de cliente: microservicios, APIs, arquitecturas orientadas a eventos y observabilidad.",
+      "Entré como desarrollador Jr y soy Semi Senior desde febrero de 2026. Trabajo full stack en sistemas de experiencia de cliente: del backend en Go —microservicios, APIs, arquitecturas orientadas a eventos y observabilidad— al frontend.",
   },
   {
     role: "Desarrollador de software",

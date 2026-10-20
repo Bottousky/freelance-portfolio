@@ -94,8 +94,8 @@ describe("hero focus and Manuel's own story", () => {
     expect(studies.find((item) => item.place === "Universidad de Buenos Aires")?.title).toBe("CBC de Ingeniería");
   });
 
-  it("tells the futsal story with Racing Club", () => {
-    expect(futsal.club).toBe("Racing Club");
-    expect(futsal.badge).toBe("Campeón 2026");
+  it("tells the futsal story without exposing the club or titles", () => {
+    expect(futsal.since).toBe("Desde chico");
+    expect(JSON.stringify(content)).not.toMatch(/Racing|campe[oó]n/i);
   });
 });

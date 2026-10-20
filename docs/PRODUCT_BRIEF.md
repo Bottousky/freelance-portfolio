@@ -39,7 +39,7 @@ Headings are in Spanish.
 1. **Inicio** (hero) — name, positioning line, short links to the sections below.
 2. **Proyectos** — Juntopia, Proyecto Roxana, Juego de Hormigas, EventFlow.
 3. **Pasiones** — video games, board and card games, teaching and science/tech outreach.
-4. **Fuera del código** — futsal at Racing Club (champion 2026) and what it teaches him.
+4. **Fuera del código** — futsal, which he has played since childhood, and what it teaches him.
 4. **Trayectoria** — work (trabajo) and studies (estudios).
 5. **Videos** — rendered only when `NEXT_PUBLIC_YOUTUBE_URL` is set.
 6. **Contacto** — a `mailto:` link, plus GitHub.

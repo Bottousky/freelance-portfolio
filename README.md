@@ -5,7 +5,7 @@ It shows his projects, his career and studies, his passions and, when configured
 videos. The only contact is email.
 
 Manuel is a software engineer at Mercado Libre, an electronics technician and a
-teacher. He is building Juntopia and Proyecto Roxana, and plays futsal for Racing Club.
+teacher. He is building Juntopia and Proyecto Roxana, and plays futsal.
 
 ## What's here
 
@@ -21,7 +21,7 @@ teacher. He is building Juntopia and Proyecto Roxana, and plays futsal for Racin
     reference implementation:
     [github.com/Bottousky/eventflow](https://github.com/Bottousky/eventflow).
 - **Pasiones** — video games, board and card games, and teaching and science/tech outreach.
-- **Fuera del código** — futsal at Racing Club, champion in 2026.
+- **Fuera del código** — futsal, played since childhood.
 - **Trayectoria** — work and studies, taken from [`docs/CONTENT.md`](docs/CONTENT.md).
 - **Videos** — a section linking to the personal YouTube channel. It only renders when
   `NEXT_PUBLIC_YOUTUBE_URL` is set.

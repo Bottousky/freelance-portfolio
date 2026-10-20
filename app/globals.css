@@ -208,17 +208,22 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
 .tile:hover .vCard { transform: rotate(calc((var(--i) - 1) * 17deg)) translateX(calc((var(--i) - 1) * 104px)); }
 @keyframes float { 50% { translate: 0 -10px; } }
 
-/* Proyecto Roxana: current runs through a circuit and lights a bulb. */
-.vCircuit { width: min(300px, 86%); overflow: visible; }
-.vCircuit .wire { fill: none; stroke: rgba(255, 255, 255, .16); stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; }
-.vCircuit .current { fill: none; stroke: rgb(var(--accent)); stroke-width: 3; stroke-linecap: round; stroke-dasharray: 5 15; animation: dash 1s linear infinite; filter: drop-shadow(0 0 4px rgb(var(--accent))); }
-.vCircuit .battery line { stroke: var(--ink); stroke-width: 3; stroke-linecap: round; }
-.vCircuit .resistor path { fill: none; stroke: rgba(255, 255, 255, .55); stroke-width: 2.4; stroke-linejoin: round; }
-.vCircuit .bulb { fill: rgba(255, 226, 122, .2); stroke: #ffe27a; stroke-width: 2; }
-.vCircuit .filament { fill: none; stroke: #ffe27a; stroke-width: 1.6; }
-.vCircuit .bulbGlow { fill: #ffe27a; opacity: .2; filter: blur(10px); animation: glow 2.4s ease-in-out infinite; }
+/* Proyecto Roxana: worlds orbit a glowing core. Orbits are squashed into ellipses and each
+   label counter-rotates (and un-squashes) so it always reads upright. */
+.vUniverse { position: relative; width: 100%; height: 100%; display: grid; place-items: center; }
+.vOrbits { position: absolute; inset: 0; transform: scaleY(.55); }
+.vOrbit { position: absolute; left: 50%; top: 50%; width: calc(var(--r) * 2); height: calc(var(--r) * 2); margin: calc(var(--r) * -1) 0 0 calc(var(--r) * -1);
+  border-radius: 50%; border: 1px dashed rgb(var(--c) / .35); animation: spin var(--dur) linear infinite; animation-delay: var(--delay); }
+.vWorld { position: absolute; left: 50%; top: 0; width: 0; height: 0; }
+.vWorld i { position: absolute; left: 0; top: 0; display: flex; align-items: center; gap: 7px; font-style: normal; font-family: var(--font-mono), monospace; font-size: 10px; white-space: nowrap; color: rgb(var(--c)); padding: 1px 6px 1px 0; border-radius: 6px; background: linear-gradient(90deg, transparent 6px, rgba(6, 7, 13, .78) 6px);
+  transform-origin: 0 0; animation: unspin var(--dur) linear infinite; animation-delay: var(--delay); }
+.vWorld i::before { content: ""; flex: none; width: 12px; height: 12px; border-radius: 50%; background: rgb(var(--c)); box-shadow: 0 0 14px 3px rgb(var(--c) / .7); }
+.vCore { position: relative; width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; font-family: var(--font-display), sans-serif; font-weight: 800; font-size: 18px; color: #06070d;
+  background: var(--grad); box-shadow: 0 0 30px 6px rgba(139, 108, 255, .55); animation: glow 3s ease-in-out infinite; }
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes unspin { from { transform: rotate(0deg) scaleY(calc(1 / .55)) translate(-6px, -50%); } to { transform: rotate(-360deg) scaleY(calc(1 / .55)) translate(-6px, -50%); } }
+@keyframes glow { 50% { opacity: .8; } }
 @keyframes dash { to { stroke-dashoffset: -20; } }
-@keyframes glow { 50% { opacity: .55; } }
 
 /* Juego de Hormigas: an ant follows a dotted trail back to the colony. */
 .vTrail { width: min(320px, 90%); overflow: visible; }

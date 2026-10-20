@@ -14,14 +14,15 @@ Thread for the whole site (manifesto):
 
 > Me interesa entender cómo funcionan las cosas, construir otras nuevas y mejorar
 > continuamente lo que hago. Ya sea desarrollando software, creando experiencias
-> educativas o compitiendo en una cancha.
+> educativas o jugando al futsal.
 
 ## Trabajo (work)
 
 - **Software Engineer, Mercado Libre** — noviembre 2023 – presente. Joined as
   Software Developer Jr; Semi Senior since February 2026.
-  Backend in Go: microservices, APIs, event-driven systems, observability, on-call,
-  code review and mentoring.
+  Full stack today: backend in Go (microservices, APIs, event-driven systems,
+  observability, on-call, code review and mentoring) and frontend work too. Frontend
+  stack details at Mercado Libre are not provided; do not add them.
 - About four years working in software/systems overall.
 - **Software Developer, Telectrónica Peajes S.A.** — 2022–2023.
   Desktop software in C++ and C# for toll systems.
@@ -43,9 +44,9 @@ school position.
 
 ## Futsal
 
-- Played football since childhood (youth categories). Returned to adult competition in
-  futsal. Plays for **Racing Club**; in 2026 the team played the final and won the
-  championship ("Campeón 2026").
+- Has played football since childhood and still plays: today, futsal.
+- Keep private: the club he plays for and any titles or championships. Do not mention
+  them anywhere on the site.
 - Lessons he relates to work: training even without a match, playing whatever role the
   team needs, deciding fast under pressure.
 

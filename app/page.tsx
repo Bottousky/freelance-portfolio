@@ -28,22 +28,30 @@ function JuntopiaVisual() {
   );
 }
 
+// Proyecto Roxana is a whole educational universe: four worlds orbit a shared core.
+const roxanaWorlds = [
+  { name: "Matemática", radius: 40, duration: 16, delay: 0, color: "255 77 141" },
+  { name: "Física", radius: 62, duration: 22, delay: -5.5, color: "255 184 77" },
+  { name: "Electrónica", radius: 84, duration: 28, delay: -14, color: "51 225 255" },
+  { name: "Programación", radius: 104, duration: 36, delay: -27, color: "139 108 255" },
+];
+
 function RoxanaVisual() {
   return (
-    <svg className="vCircuit" viewBox="0 0 240 150" aria-hidden="true">
-      <path className="wire" d="M40 80 V110 H190 V40 H137 M95 40 H40 V70" />
-      <path className="current" d="M40 80 V110 H190 V40 H137 M95 40 H40 V70" />
-      <g className="battery">
-        <line x1="28" y1="70" x2="52" y2="70" />
-        <line x1="33" y1="80" x2="47" y2="80" />
-      </g>
-      <g className="resistor">
-        <path d="M95 40 l6 -8 l10 16 l10 -16 l10 16 l6 -8" />
-      </g>
-      <circle className="bulbGlow" cx="190" cy="75" r="26" />
-      <circle className="bulb" cx="190" cy="75" r="12" />
-      <path className="filament" d="M184 77 q3 -8 6 0 q3 8 6 0" />
-    </svg>
+    <div className="vUniverse" aria-hidden="true">
+      <div className="vOrbits">
+        {roxanaWorlds.map((world) => (
+          <div
+            key={world.name}
+            className="vOrbit"
+            style={{ "--r": `${world.radius}px`, "--dur": `${world.duration}s`, "--delay": `${world.delay}s`, "--c": world.color } as CSSProperties}
+          >
+            <span className="vWorld"><i>{world.name}</i></span>
+          </div>
+        ))}
+      </div>
+      <span className="vCore">R</span>
+    </div>
   );
 }
 
@@ -281,7 +289,7 @@ export default function Home() {
             <div className="futsalText">
               <p className="eyebrow mono">03 / Fuera del código</p>
               <h2 id="futsal-title">{futsal.title.lead} <em>{futsal.title.em}</em></h2>
-              <p className="futsalMeta"><span className="status">{futsal.badge}</span><span className="mono">{futsal.sport} · {futsal.club}</span></p>
+              <p className="futsalMeta"><span className="status">{futsal.since}</span><span className="mono">{futsal.sport}</span></p>
               <p>{futsal.body}</p>
               <ul className="lessons" aria-label="Lo que me llevo de la cancha">
                 {futsal.lessons.map((lesson) => <li key={lesson}>{lesson}</li>)}
