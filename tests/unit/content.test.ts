@@ -9,6 +9,8 @@ describe("personal site content", () => {
     expect(profile.lead).toMatch(/Mercado Libre/);
     expect(Object.keys(content)).not.toContain("services");
     expect(JSON.stringify(content)).not.toMatch(/USD|freelance|WhatsApp/i);
+    // Manuel is a teacher for life, never a former one.
+    expect(JSON.stringify(content)).not.toMatch(/ex[ -]?docente|fui docente/i);
   });
 
   it("leads the projects with Juntopia linking to its own site", () => {

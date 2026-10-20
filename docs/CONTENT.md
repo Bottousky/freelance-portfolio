@@ -5,7 +5,7 @@ rules below are in English. If a fact is not listed here, the site must not publ
 
 ## Positioning
 
-> Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
+> Desarrollador backend en Mercado Libre, técnico electrónico y docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
 
 ## Trabajo (work)
 
@@ -16,6 +16,10 @@ rules below are in English. If a fact is not listed here, the site must not publ
   Desktop software in C++ and C# for toll systems.
 - **Docente, escuela técnica secundaria** — 2020–2023.
   Taught programming, electronics, mathematics and physics.
+
+Manuel is a teacher for life. Teaching is part of who he is, not a past job: never call
+him "ex docente", "former teacher" or similar. The 2020–2023 dates refer only to that
+school position.
 
 ## Estudios (studies)
 

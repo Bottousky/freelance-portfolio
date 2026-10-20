@@ -32,10 +32,10 @@ export const contact = {
 export const profile = {
   name: "Manuel Botto",
   greeting: "Hola, soy",
-  lead: "Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. En mi tiempo libre hago juegos y cuento cómo los construyo.",
+  lead: "Desarrollador backend en Mercado Libre, técnico electrónico y docente. En mi tiempo libre hago juegos y cuento cómo los construyo.",
   // Rotating endings for "Yo …" in the hero; the full facts are stated in `lead`.
   roles: ["programo backend en Go.", "hago videojuegos.", "diseño juegos de cartas.", "enseño y divulgo."],
-  facts: ["Argentina", "Backend en Go", "Técnico en Electrónica", "Ex docente"],
+  facts: ["Argentina", "Backend en Go", "Técnico en Electrónica", "Docente"],
 } as const;
 
 export const marquee = {
@@ -122,7 +122,7 @@ export const passions = [
   {
     slug: "ensenar",
     title: "Enseñar y divulgar",
-    body: "Fui docente en una escuela técnica. Hoy lo sigo haciendo con Proyecto Roxana y, pronto, con videos sobre cómo construyo lo que hago.",
+    body: "Soy docente y lo voy a ser siempre. Di clases en una escuela técnica y hoy sigo enseñando con Proyecto Roxana y, pronto, con videos sobre cómo construyo lo que hago.",
     related: ["Proyecto Roxana"],
   },
 ] as const;

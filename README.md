@@ -4,7 +4,7 @@ Personal website of Manuel Botto, served at `manuelbotto.com`. The copy is in Sp
 It shows his projects, his career and studies, his passions and, when configured, his
 videos. The only contact is email.
 
-Manuel is a backend engineer at Mercado Libre, an electronics technician and a former
+Manuel is a backend engineer at Mercado Libre, an electronics technician and a
 teacher. In his free time he makes games and writes about how he builds them.
 
 ## What's here

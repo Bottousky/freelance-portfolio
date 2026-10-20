@@ -253,7 +253,7 @@ export default function Home() {
         <section id="trayectoria" className="section wrap" aria-labelledby="trayectoria-title">
           <header className="sectionHead" data-reveal>
             <p className="eyebrow mono">03 / Trayectoria</p>
-            <h2 id="trayectoria-title">De la electrónica al backend, <em>pasando por el aula</em>.</h2>
+            <h2 id="trayectoria-title">De la electrónica al backend, <em>siempre docente</em>.</h2>
           </header>
           <div className="pathGrid">
             <div data-reveal>

@@ -10,7 +10,7 @@ path is email.
 
 Use this line verbatim (Spanish), in the first viewport:
 
-> Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
+> Desarrollador backend en Mercado Libre, técnico electrónico y docente. En mi tiempo libre hago juegos y cuento cómo los construyo.
 
 ## Audience
 

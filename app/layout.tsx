@@ -8,7 +8,7 @@ const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", displ
 
 const title = "Manuel Botto";
 const description =
-  "Desarrollador backend en Mercado Libre, técnico electrónico y ex docente. Hago juegos —Juntopia, Proyecto Roxana— y cuento cómo los construyo.";
+  "Desarrollador backend en Mercado Libre, técnico electrónico y docente. Hago juegos —Juntopia, Proyecto Roxana— y cuento cómo los construyo.";
 
 export const metadata: Metadata = {
   title,
