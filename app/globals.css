@@ -173,8 +173,8 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
   background: radial-gradient(70% 90% at 50% 100%, rgb(var(--accent) / .22), transparent 70%),
     repeating-linear-gradient(90deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 28px),
     repeating-linear-gradient(0deg, rgba(255, 255, 255, .025) 0 1px, transparent 1px 28px); }
-.tile-juntopia .tileVisual { height: 300px; }
-.tile-proyecto-roxana .tileVisual { height: 300px; }
+.tile-juntopia .tileVisual { height: 316px; display: flex; align-items: center; justify-content: center; }
+.tile-proyecto-roxana .tileVisual { height: 316px; }
 .tileBody { display: flex; flex-direction: column; gap: 14px; padding: 26px 28px 30px; flex: 1; }
 .tileMeta { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; font-size: 13px; color: var(--dim); }
 .status { font-size: 12px; font-weight: 700; padding: 4px 11px; border-radius: 999px; color: rgb(var(--accent)); background: rgb(var(--accent) / .12); border: 1px solid rgb(var(--accent) / .35); }
@@ -187,25 +187,71 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
 .tileLink span[aria-hidden] { display: inline-block; transition: transform .2s ease; }
 .tileLink:hover span[aria-hidden] { transform: translate(3px, -3px); }
 
-/* Juntopia: a floating hand of cards that fans out on hover. */
-.vHand { position: relative; width: 320px; height: 240px; }
-.vCard { position: absolute; left: 50%; top: 50%; width: 136px; height: 184px; margin: -92px 0 0 -68px; border-radius: 14px; display: grid; place-items: center;
-  background: linear-gradient(160deg, #1d1734, #0e0c1a); border: 1px solid rgba(255, 255, 255, .18); box-shadow: 0 24px 50px -20px rgb(var(--accent) / .7);
-  transform-origin: 50% 140%; transform: rotate(calc((var(--i) - 1) * 13deg)) translateX(calc((var(--i) - 1) * 82px));
-  transition: transform .6s cubic-bezier(.2, .7, .2, 1); animation: float 5s ease-in-out infinite; animation-delay: calc(var(--i) * -1.4s); }
-.vCard::before { content: ""; position: absolute; inset: 7px; border-radius: 9px; border: 1px solid rgb(var(--accent) / .35); }
-.vCard strong { font-family: var(--font-display), sans-serif; font-size: 12px; line-height: 1.3; text-align: center; padding: 0 12px; color: var(--muted); }
-/* Side cards peek out from behind the brand card, so their label hugs the visible edge. */
-.vCard:nth-child(1) { place-items: center start; }
-.vCard:nth-child(1) strong { text-align: left; padding-right: 58px; }
-.vCard:nth-child(3) { place-items: center end; }
-.vCard:nth-child(3) strong { text-align: right; padding-left: 58px; }
-.vCardBrand strong { font-size: 15px; padding: 0 8px; color: rgb(var(--accent)); }
-.vCardBrand { background: linear-gradient(160deg, #2a1636, #120c1d); }
-.vPip { position: absolute; top: 12px; left: 13px; font-family: var(--font-mono), monospace; font-size: 13px; color: var(--muted); }
-.vPipEnd { top: auto; left: auto; bottom: 12px; right: 13px; transform: rotate(180deg); }
-.tile:hover .vCard { transform: rotate(calc((var(--i) - 1) * 17deg)) translateX(calc((var(--i) - 1) * 104px)); }
-@keyframes float { 50% { translate: 0 -10px; } }
+/* Juntopia: dice at the table, cards dealt from the deck, and a move flying over the Atlas globe.
+   The scene has a fixed design size and is scaled down on small screens. */
+.jScene { flex: none; width: 760px; height: 296px; display: flex; align-items: flex-end; justify-content: space-between; padding: 0 18px 14px; }
+.jZone { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+.jZoneLabel { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
+
+.jDice { display: flex; gap: 14px; height: 170px; align-items: flex-end; padding-bottom: 10px; perspective: 700px; }
+.jDieSlot { position: relative; width: 44px; height: 44px; }
+.jDie { position: absolute; inset: 0; transform-style: preserve-3d; transform: rotateX(-18deg) rotateY(28deg); animation: roll 6s cubic-bezier(.3, .6, .3, 1) infinite; animation-delay: var(--d); }
+.jFace { position: absolute; inset: 0; display: grid; grid-template-columns: repeat(3, 1fr); grid-template-rows: repeat(3, 1fr); padding: 6px; border-radius: 9px;
+  background: linear-gradient(145deg, #fdfbff, #d9d3ea); box-shadow: inset 0 0 0 1px rgba(0, 0, 0, .08); backface-visibility: hidden; }
+.jFace i { display: block; width: 7px; height: 7px; margin: auto; border-radius: 50%; }
+.jFace i.on { background: #ff4d8d; box-shadow: inset 0 1px 1px rgba(0, 0, 0, .35); }
+.jFace-front { transform: translateZ(22px); }
+.jFace-back { transform: rotateY(180deg) translateZ(22px); }
+.jFace-right { transform: rotateY(90deg) translateZ(22px); }
+.jFace-left { transform: rotateY(-90deg) translateZ(22px); }
+.jFace-top { transform: rotateX(90deg) translateZ(22px); }
+.jFace-bottom { transform: rotateX(-90deg) translateZ(22px); }
+.jDieShadow { position: absolute; left: 4px; right: 4px; bottom: -12px; height: 8px; border-radius: 50%; background: rgba(0, 0, 0, .55); filter: blur(3px); animation: dieShadow 6s cubic-bezier(.3, .6, .3, 1) infinite; animation-delay: var(--d); }
+/* A throw: up, tumble, land, a small bounce, rest. The resting pose equals the start pose. */
+@keyframes roll {
+  0%, 8% { transform: translateY(0) rotateX(-18deg) rotateY(28deg); }
+  20% { transform: translateY(-92px) rotateX(170deg) rotateY(210deg); }
+  33% { transform: translateY(0) rotateX(342deg) rotateY(388deg); }
+  38% { transform: translateY(-14px) rotateX(342deg) rotateY(388deg); }
+  43%, 100% { transform: translateY(0) rotateX(342deg) rotateY(388deg); }
+}
+@keyframes dieShadow { 0%, 8% { transform: scale(1); opacity: 1; } 20% { transform: scale(.45); opacity: .3; } 33%, 100% { transform: scale(1); opacity: 1; } }
+
+.jTable { position: relative; width: 340px; height: 238px; perspective: 900px; }
+.jDeck, .jCard { position: absolute; left: 50%; top: 44%; width: 104px; height: 146px; margin: -73px 0 0 -52px; border-radius: 12px; }
+.jDeck { transform: translate(-3px, 52px) rotate(-4deg); background: repeating-linear-gradient(45deg, #2a1636 0 6px, #1b1029 6px 12px); border: 1px solid rgb(var(--accent) / .45); }
+.jDeckTop { transform: translate(2px, 48px) rotate(3deg); }
+.jCard { transform-style: preserve-3d; transform: translate(var(--x), var(--y)) rotate(var(--rot)); animation: deal 7s cubic-bezier(.4, .1, .2, 1) infinite; animation-delay: var(--d); }
+.jCardBrand { z-index: 1; }
+.jCardFront, .jCardBack { position: absolute; inset: 0; border-radius: inherit; backface-visibility: hidden; }
+.jCardFront { display: grid; place-items: center; padding: 10px; background: linear-gradient(160deg, #1d1734, #0e0c1a); border: 1px solid rgba(255, 255, 255, .2); box-shadow: 0 20px 40px -18px rgb(var(--accent) / .8); }
+.jCardFront::before { content: ""; position: absolute; inset: 6px; border-radius: 8px; border: 1px solid rgb(var(--accent) / .35); }
+.jCardFront strong { font-family: var(--font-display), sans-serif; font-size: 12px; line-height: 1.3; text-align: center; color: var(--ink); }
+.jCardBrand .jCardFront { background: linear-gradient(160deg, #3a1745, #150b22); }
+.jCardBrand .jCardFront strong { font-size: 14px; color: rgb(var(--accent)); }
+.jCardFront b { position: absolute; top: 9px; left: 11px; font-family: var(--font-mono), monospace; font-size: 12px; font-weight: 500; color: var(--muted); }
+.jCardFront .jCardIndexEnd { top: auto; left: auto; bottom: 9px; right: 11px; transform: rotate(180deg); }
+.jCardBack { transform: rotateY(180deg); background: repeating-linear-gradient(45deg, #2a1636 0 6px, #1b1029 6px 12px); border: 1px solid rgb(var(--accent) / .45); }
+/* Fly from the deck face down, flip, hold, flip back and return. The resting (no-animation)
+   transform is the fanned, face-up hand. */
+@keyframes deal {
+  0% { transform: translate(0, 50px) rotate(0deg) rotateY(180deg); }
+  14% { transform: translate(var(--x), var(--y)) rotate(var(--rot)) rotateY(180deg); }
+  24%, 80% { transform: translate(var(--x), calc(var(--y) - 6px)) rotate(var(--rot)) rotateY(0deg); }
+  90% { transform: translate(var(--x), var(--y)) rotate(var(--rot)) rotateY(180deg); }
+  100% { transform: translate(0, 50px) rotate(0deg) rotateY(180deg); }
+}
+
+.jGlobe { width: 210px; height: 200px; overflow: visible; color: rgba(255, 255, 255, .5); }
+.jGlobeDots { opacity: .45; }
+.jMeridian { fill: none; stroke: rgb(255 77 141 / .35); stroke-width: 1; }
+.jParallel { fill: none; stroke: rgba(255, 255, 255, .12); stroke-width: 1; }
+.jGlobeEdge { fill: none; stroke: rgb(255 77 141 / .6); stroke-width: 1.5; }
+.jFlight { fill: none; stroke: var(--amber); stroke-width: 2; stroke-dasharray: 4 7; animation: dash 1s linear infinite; }
+.jPin { fill: var(--amber); }
+.jPinPulse { fill: none; stroke: var(--amber); stroke-width: 1.5; }
+.jBird { fill: var(--ink); filter: drop-shadow(0 0 6px rgba(255, 184, 77, .9)); }
+
 
 /* Proyecto Roxana: worlds orbit a glowing core. Orbits are squashed into ellipses and each
    label counter-rotates (and un-squashes) so it always reads upright. */
@@ -332,6 +378,10 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
   .futsalPanel { grid-template-columns: 1fr; }
 }
 
+@media (max-width: 860px) {
+  .jScene { scale: .8; }
+}
+
 @media (max-width: 680px) {
   .wrap { width: calc(100% - 32px); }
   .topbar nav a:not(.navContact) { display: none; }
@@ -341,7 +391,7 @@ html.js [data-reveal].in { opacity: 1; translate: 0 0; }
   .bento { grid-template-columns: 1fr; }
   .tile-juntopia, .tile-proyecto-roxana, .tile-juego-de-hormigas, .tile-eventflow { grid-column: auto; }
   .tile-juntopia .tileVisual, .tileVisual { height: 220px; }
-  .vHand { transform: scale(.72); }
+  .jScene { scale: .46; }
   .tileBody { padding: 22px 22px 26px; }
   .section { padding-top: 96px; }
   .videoPanel { padding: 30px 24px; }

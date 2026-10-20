@@ -2,6 +2,7 @@ import type { CSSProperties, ReactNode } from "react";
 import { CircuitField } from "@/components/CircuitField";
 import { CopyEmail } from "@/components/CopyEmail";
 import { Interactions } from "@/components/Interactions";
+import { JuntopiaScene } from "@/components/JuntopiaScene";
 import { contact, futsal, marquee, passions, profile, projects, studies, tools, work } from "@/lib/content";
 
 const emailHref = `mailto:${contact.email}`;
@@ -13,20 +14,6 @@ const projectAccent: Record<string, string> = {
   "juego-de-hormigas": "255 184 77",
   eventflow: "139 108 255",
 };
-
-function JuntopiaVisual() {
-  return (
-    <div className="vHand" aria-hidden="true">
-      {["En la mesa", "Juntopia", "A la distancia"].map((label, i) => (
-        <div className={`vCard${i === 1 ? " vCardBrand" : ""}`} key={label} style={{ "--i": i } as CSSProperties}>
-          <span className="vPip">J</span>
-          <strong>{label}</strong>
-          <span className="vPip vPipEnd">J</span>
-        </div>
-      ))}
-    </div>
-  );
-}
 
 // Proyecto Roxana is a whole educational universe: four worlds orbit a shared core.
 const roxanaWorlds = [
@@ -89,7 +76,7 @@ function EventFlowVisual() {
 }
 
 const projectVisual: Record<string, () => ReactNode> = {
-  juntopia: JuntopiaVisual,
+  juntopia: JuntopiaScene,
   "proyecto-roxana": RoxanaVisual,
   "juego-de-hormigas": HormigasVisual,
   eventflow: EventFlowVisual,
