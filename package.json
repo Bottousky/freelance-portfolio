@@ -11,6 +11,7 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "verify:structure": "node scripts/verify-structure.mjs",
+    "smoke:worker": "node scripts/smoke-worker.mjs",
     "validate": "npm run verify:structure && npm run lint && npm run typecheck && npm run test && npm run build",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
