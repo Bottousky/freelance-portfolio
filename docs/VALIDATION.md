@@ -10,11 +10,19 @@ npm run lint
 npm run typecheck
 npm run test
 npm run build
+npx opennextjs-cloudflare build
+npm run smoke:worker
 npm run test:e2e -- --project=chromium
 npm run test:e2e -- --project=mobile
 ```
 
 All must pass.
+
+`npm run smoke:worker` is the only gate that runs the real Cloudflare Worker
+bundle. It starts `wrangler dev` (local mode, no credentials) against
+`.open-next/worker.js` and asserts `GET /` returns 200 containing "Hola, soy" and
+an unknown path returns 404. Do not deploy if it fails: on 2026-10-20 a bundle
+that passed every other gate returned 500 on every request in production.
 
 ## Visual/manual gates
 

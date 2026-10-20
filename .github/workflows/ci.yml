@@ -21,6 +21,11 @@ jobs:
         run: |
           test -f .open-next/worker.js
           test -d .open-next/assets
+      # Boots .open-next/worker.js with `wrangler dev` (local mode, no Cloudflare
+      # credentials) and checks it serves / and a 404. Catches bundles that build
+      # fine but return 500 at runtime.
+      - name: Smoke test Worker bundle
+        run: npm run smoke:worker
       # Blocking: runtime (production) dependencies must have no high/critical advisories.
       - run: npm audit --omit=dev --audit-level=high
       # Informational: dev tooling can carry advisories with no published fix yet

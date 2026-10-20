@@ -60,6 +60,7 @@ npm run typecheck
 npm run test
 npm run build
 npx opennextjs-cloudflare build
+npm run smoke:worker
 npm run test:e2e -- --project=chromium
 npm run test:e2e -- --project=mobile
 npm audit --omit=dev --audit-level=high
@@ -67,6 +68,13 @@ npm audit --omit=dev --audit-level=high
 
 `npm run validate` runs the non-OpenNext, non-browser gates. Browser E2E and the
 OpenNext bundle build are run separately because they need extra setup.
+
+`npm run smoke:worker` boots the built Worker (`.open-next/worker.js`) with
+`wrangler dev` in local mode on a free port and checks that `/` returns 200 with
+the hero greeting and that an unknown path returns 404. It needs no Cloudflare
+credentials and prints the wrangler output on failure. Run it after
+`npx opennextjs-cloudflare build`: a bundle can build cleanly and still return 500
+on every request, and neither `next build` nor E2E against `next dev` notice.
 
 ## Build the Worker bundle
 
